@@ -42,7 +42,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
   Routes
 */
 app.use('/', require('./routes/index'));
-
+app.use('/24h', require('./routes/24h'));
 /*
   Catch 404 and forward to error handler
 */
