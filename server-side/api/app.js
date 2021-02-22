@@ -1,12 +1,16 @@
-var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
+/*
+  Http server
+*/
+var express = require('express')
+var path = require('path')
+var bodyParser = require('body-parser')
+var app = express()
 
-var app = express();
+/*
+  Fuck that cors thing
+*/
 var cors = require('cors');
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 app.use(function(req, res, next) {
@@ -20,16 +24,30 @@ app.use(function(req, res, next) {
     next();
 });
 
+/*
+  Activate bodyparser
+  json & urlencoded
+*/
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+/*
+  Routes
+*/
 app.use('/', require('./routes/index'));
 
-// catch 404 and forward to error handler
+/*
+  Catch 404 and forward to error handler
+*/
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-// error handlers
+/*
+  Error handlers
+*/
 
 // development error handler
 // will print stacktrace
