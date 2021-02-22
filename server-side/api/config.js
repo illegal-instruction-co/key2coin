@@ -26,7 +26,12 @@ Config.basis = {
   */
   terminal_logs: true,
   log_prefix: Colors.FgCyan + '[LOG]' + Colors.Reset,
-  error_log_prefix: Colors.FgRed + '[ERROR]' + Colors.Reset
+  error_log_prefix: Colors.FgRed + '[ERROR]' + Colors.Reset,
+
+  /*
+    USDT/USD assumption
+  */
+  usdtusd: 1.05
 }
 
 /*
@@ -48,6 +53,11 @@ Config.external = {
       "https://api2.binance.com",
       "https://api3.binance.com"
     ]
+  },
+
+  // Exchange Rate API
+  exchangeratesapi: {
+    api_endpoint: "https://api.exchangeratesapi.io"
   }
 
 }

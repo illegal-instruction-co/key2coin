@@ -10,6 +10,7 @@ const fetch = require('node-fetch');
 */
 const Log = require('../functions/log')
 const BREP = require('../functions/binance_random_endpoint')
+const Wait = require('../functions/wait')
 
 router.get('/', function(req, res, next) {
   res.json({
@@ -59,7 +60,71 @@ router.get('/crypto_currency/:symbol', function(req, res, next) {
 
   function interpretingCurrencys(rawUsdtData) {
     if (rawUsdtData === null || rawUsdtData === undefined) return res.json( { error: "Unknown error handled" } )
-    res.json(rawUsdtData)
+
+    function getRates() {
+      fetch(config.external.exchangeratesapi.api_endpoint + `/latest?base=USD&symbols=EUR,TRY`)
+        .then(res => res.json())
+        // Successfully got USD TRY exchange rates from server
+        .then(body => {
+          res.json([
+            {
+              currency: "USD",
+              result: {
+                priceChange: rawUsdtData.priceChange * config.basis.usdtusd,
+                weightedAvgPrice: rawUsdtData.weightedAvgPrice * config.basis.usdtusd,
+                prevClosePrice: rawUsdtData.prevClosePrice * config.basis.usdtusd,
+                lastPrice: rawUsdtData.lastPrice * config.basis.usdtusd,
+                bidPrice: rawUsdtData.bidPrice * config.basis.usdtusd,
+                askPrice: rawUsdtData.askPrice * config.basis.usdtusd,
+                openPrice: rawUsdtData.openPrice * config.basis.usdtusd,
+                highPrice: rawUsdtData.highPrice * config.basis.usdtusd,
+                lowPrice: rawUsdtData.lowPrice * config.basis.usdtusd,
+                openTime: rawUsdtData.openTime,
+                closeTime: rawUsdtData.closeTime
+              }
+            },
+            {
+              currency: "EUR",
+              result: {
+                priceChange: rawUsdtData.priceChange * config.basis.usdtusd * body.rates.EUR,
+                weightedAvgPrice: rawUsdtData.weightedAvgPrice * config.basis.usdtusd * body.rates.EUR,
+                prevClosePrice: rawUsdtData.prevClosePrice * config.basis.usdtusd * body.rates.EUR,
+                lastPrice: rawUsdtData.lastPrice * config.basis.usdtusd * body.rates.EUR,
+                bidPrice: rawUsdtData.bidPrice * config.basis.usdtusd * body.rates.EUR,
+                askPrice: rawUsdtData.askPrice * config.basis.usdtusd * body.rates.EUR,
+                openPrice: rawUsdtData.openPrice * config.basis.usdtusd * body.rates.EUR,
+                highPrice: rawUsdtData.highPrice * config.basis.usdtusd * body.rates.EUR,
+                lowPrice: rawUsdtData.lowPrice * config.basis.usdtusd * body.rates.EUR,
+                openTime: rawUsdtData.openTime,
+                closeTime: rawUsdtData.closeTime
+              },
+            },
+            {
+              currency: "TRY",
+              result: {
+                priceChange: rawUsdtData.priceChange * config.basis.usdtusd * body.rates.TRY,
+                weightedAvgPrice: rawUsdtData.weightedAvgPrice * config.basis.usdtusd * body.rates.TRY,
+                prevClosePrice: rawUsdtData.prevClosePrice * config.basis.usdtusd * body.rates.TRY,
+                lastPrice: rawUsdtData.lastPrice * config.basis.usdtusd * body.rates.TRY,
+                bidPrice: rawUsdtData.bidPrice * config.basis.usdtusd * body.rates.TRY,
+                askPrice: rawUsdtData.askPrice * config.basis.usdtusd * body.rates.TRY,
+                openPrice: rawUsdtData.openPrice * config.basis.usdtusd * body.rates.TRY,
+                highPrice: rawUsdtData.highPrice * config.basis.usdtusd * body.rates.TRY,
+                lowPrice: rawUsdtData.lowPrice * config.basis.usdtusd * body.rates.TRY,
+                openTime: rawUsdtData.openTime,
+                closeTime: rawUsdtData.closeTime
+              },
+            }
+          ])
+        })
+        // Couldn't connect that exchange rates api endpoint
+        .catch(async function() {
+          await Wait(500)
+          interpretingCurrencys(rawUsdtData)
+        })
+    }
+
+    getRates()
   }
 
   /*
