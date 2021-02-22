@@ -41,6 +41,21 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/crypto_currency', function(req, res, next) {
+
+  res.json({
+    error: 'missed parameters',
+    expected: [
+      "symbol"
+    ]
+  })
+
+  /*
+    Request log
+  */
+  requestLog(req,res)
+})
+
 router.get('/crypto_currency/:symbol', function(req, res, next) {
 
   function getResponse(endPoint) {
@@ -136,14 +151,24 @@ router.get('/crypto_currency/:symbol', function(req, res, next) {
   /*
     Request log
   */
-  Log(config.basis.log_prefix, {
-    request_end_point: req.url,
-    request_parameters: req.params,
-    request_method: req.method,
-    response_status: 200
-  })
+  requestLog(req,res)
 
 });
+
+router.get('/currency', function(req, res, next) {
+
+  res.json({
+    error: 'missed parameters',
+    expected: [
+      "symbol"
+    ]
+  })
+
+  /*
+    Request log
+  */
+  requestLog(req,res)
+})
 
 router.get('/currency/:symbol', function(req, res, next) {
   res.json({})
@@ -151,12 +176,16 @@ router.get('/currency/:symbol', function(req, res, next) {
   /*
     Request log
   */
+  requestLog(req,res)
+});
+
+
+function requestLog(req, res) {
   Log(config.basis.log_prefix, {
     request_end_point: req.url,
     request_parameters: req.params,
     request_method: req.method,
     response_status: 200
   })
-});
-
+}
 module.exports = router;
