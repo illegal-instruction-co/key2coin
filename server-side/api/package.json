@@ -1,0 +1,29 @@
+{
+  "name": "key2coin-api",
+  "version": "1.0.0",
+  "description": "key2coin rest api",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/illegal-instuction-co/key2coin.git"
+  },
+  "keywords": [
+    "key2coin",
+    "rest",
+    "api"
+  ],
+  "author": "illegal-instruction-co",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/illegal-instuction-co/key2coin/issues"
+  },
+  "homepage": "https://github.com/illegal-instuction-co/key2coin#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
