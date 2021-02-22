@@ -41,6 +41,11 @@ router.get('/', function(req, res, next) {
   });
 });
 
+/*
+  Route information:
+  Gets currency informations filtered by
+  cryptocurrency
+*/
 router.get('/crypto_currency', function(req, res, next) {
 
   res.json({
@@ -155,6 +160,11 @@ router.get('/crypto_currency/:symbol', function(req, res, next) {
 
 });
 
+/*
+  Route information:
+  Gets cryptocurrency informations filtered by
+  currency
+*/
 router.get('/currency', function(req, res, next) {
 
   res.json({
@@ -180,6 +190,11 @@ router.get('/currency/:symbol', function(req, res, next) {
 });
 
 
+/*
+  Request log for
+  spesificated
+  route
+*/
 function requestLog(req, res) {
   Log(config.basis.log_prefix, {
     request_end_point: req.url,
@@ -188,4 +203,5 @@ function requestLog(req, res) {
     response_status: 200
   })
 }
+
 module.exports = router;
