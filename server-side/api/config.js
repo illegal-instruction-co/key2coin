@@ -19,7 +19,9 @@ Config.basis = {
     Terminal logs for
     error debugging
   */
-  terminal_logs: true
+  terminal_logs: true,
+  log_prefix: '[LOG]',
+  error_log_prefix: '[ERROR]'
 }
 
 module.exports = Config;

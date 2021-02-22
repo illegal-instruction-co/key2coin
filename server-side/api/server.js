@@ -11,4 +11,4 @@ const Log = require('./functions/log')
 http.createServer(app).listen(port);
 
 // Create start log
-Log("[LOG]", `${config.branding.project_name} rest API started on TCP port: ` + port)
+Log(config.basis.log_prefix, `${config.branding.project_name} rest API started on TCP port: ` + port)
