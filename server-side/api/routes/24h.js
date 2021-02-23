@@ -86,7 +86,13 @@ router.get('/crypto_currency/:symbol', function(req, res, next) {
         .then(res => res.json())
         // Successfully got USD TRY exchange rates from server
         .then(body => {
-          res.json([
+          res.json({
+
+          openTime: rawUsdtData.openTime,
+          closeTime: rawUsdtData.closeTime,
+          priceChangePercent: rawUsdtData.priceChangePercent,
+
+          prices: [
             {
               currency: "USD",
               result: {
@@ -98,9 +104,7 @@ router.get('/crypto_currency/:symbol', function(req, res, next) {
                 askPrice: rawUsdtData.askPrice * config.basis.usdtusd,
                 openPrice: rawUsdtData.openPrice * config.basis.usdtusd,
                 highPrice: rawUsdtData.highPrice * config.basis.usdtusd,
-                lowPrice: rawUsdtData.lowPrice * config.basis.usdtusd,
-                openTime: rawUsdtData.openTime,
-                closeTime: rawUsdtData.closeTime
+                lowPrice: rawUsdtData.lowPrice * config.basis.usdtusd
               }
             },
             {
@@ -114,9 +118,7 @@ router.get('/crypto_currency/:symbol', function(req, res, next) {
                 askPrice: rawUsdtData.askPrice * config.basis.usdtusd * body.rates.EUR,
                 openPrice: rawUsdtData.openPrice * config.basis.usdtusd * body.rates.EUR,
                 highPrice: rawUsdtData.highPrice * config.basis.usdtusd * body.rates.EUR,
-                lowPrice: rawUsdtData.lowPrice * config.basis.usdtusd * body.rates.EUR,
-                openTime: rawUsdtData.openTime,
-                closeTime: rawUsdtData.closeTime
+                lowPrice: rawUsdtData.lowPrice * config.basis.usdtusd * body.rates.EUR
               },
             },
             {
@@ -130,12 +132,11 @@ router.get('/crypto_currency/:symbol', function(req, res, next) {
                 askPrice: rawUsdtData.askPrice * config.basis.usdtusd * body.rates.TRY,
                 openPrice: rawUsdtData.openPrice * config.basis.usdtusd * body.rates.TRY,
                 highPrice: rawUsdtData.highPrice * config.basis.usdtusd * body.rates.TRY,
-                lowPrice: rawUsdtData.lowPrice * config.basis.usdtusd * body.rates.TRY,
-                openTime: rawUsdtData.openTime,
-                closeTime: rawUsdtData.closeTime
+                lowPrice: rawUsdtData.lowPrice * config.basis.usdtusd * body.rates.TRY
               },
             }
-          ])
+          ]
+        })
         })
         // Couldn't connect that exchange rates api endpoint
         .catch(async function() {
