@@ -99,19 +99,23 @@ Config.crono = {
   jobs: [
       {
         job: "jwt_secret_key_generator",
-        timer: Time.day
+        timer: Time.day,
+        run_at_start: true
       },
       {
         job: "24h_change_statistics_updater",
-        timer: 5 * Time.minute
+        timer: 5 * Time.minute,
+        run_at_start: true
       },
       {
         job: "supported_crypto_currencys_hourly_prices_updater",
-        timer: Time.hour
+        timer: Time.hour,
+        run_at_start: true
       },
       {
         job: "supported_crypto_currencys_hourly_prices_flusher",
-        timer: Time.day
+        timer: Time.day,
+        run_at_start: false
       }
   ]
 

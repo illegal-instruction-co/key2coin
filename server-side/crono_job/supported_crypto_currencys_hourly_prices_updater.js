@@ -22,17 +22,6 @@ const SupportedCryptoCurrencysHourlyPricesUpdater = function() {
 
   try {
     prices = JSON.parse(fs.readFileSync(`${__dirname}\\..\\temp\\${config.basis.hourly_prices.data_temp}`, 'utf8'))
-
-    try {
-      fs.unlinkSync(`${__dirname}\\..\\temp\\${config.basis.hourly_prices.data_temp}`)
-    } catch(err) {
-      Log(config.basis.error_log_prefix, {
-        current: 'SupportedCryptoCurrencysHourlyPricesUpdater',
-        step: 'Delete old temp file',
-        error: err
-      })
-    }
-
   } catch {
     prices = {}
   }

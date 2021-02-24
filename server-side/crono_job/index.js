@@ -15,7 +15,7 @@ const CronoJobs = function() {
   try {
     for (var i = 0; i < config.crono.jobs.length; i++) {
       el = config.crono.jobs[i]
-      require(`.\\${el.job}`)()
+      if(el.run_at_start) require(`.\\${el.job}`)()
       runJob(el)
     }
   } catch(err) {
