@@ -47,6 +47,13 @@ Config.basis = {
     secret_key_lenght: 20,
     secret_key_temp: 'jwt_secret_key_temp',
   },
+
+  /*
+    24hr statistics
+  */
+  daily_statistics: {
+    data_temp: '24h_changes_statistics'
+  }
 }
 
 /*
@@ -86,6 +93,10 @@ Config.crono = {
       {
         job: "jwt_secret_key_generator",
         timer: Time.day
+      },
+      {
+        job: "24h_change_statistics_updater",
+        timer: 2 * Time.second
       }
   ]
 
