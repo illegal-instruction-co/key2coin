@@ -7,7 +7,7 @@ Modular functions
 */
 const Log = require('../functions/log')
 const BREP = require('../functions/binance_random_endpoint')
-const Wait = require('../functions/wait')
+const RandomString = require('../functions/random_string')
 
 /*
   : Void
@@ -18,6 +18,8 @@ const SupportedCryptoCurrencysHourlyPricesUpdater = function() {
     Create prices object
   */
   var prices
+  var jobTime = Math.round(Date.now() / 1000).toString()
+
   try {
     prices = JSON.parse(fs.readFileSync(`${__dirname}\\..\\temp\\${config.basis.hourly_prices.data_temp}`, 'utf8'))
 
@@ -32,12 +34,14 @@ const SupportedCryptoCurrencysHourlyPricesUpdater = function() {
     }
 
   } catch {
-    prices = []
+    prices = {}
   }
+
+  prices[jobTime] = []
 
   for (var i = 0; i < config.supported_crypto_currencys.length; i++) {
     createPrices(config.supported_crypto_currencys[i])
-    prices.push(JSON.parse(fs.readFileSync(`${__dirname}\\..\\temp\\${config.supported_crypto_currencys[i]}_PRICES_TEMP`, 'utf8')))
+    prices[jobTime].push({ crypto_currency: config.supported_crypto_currencys[i], data:JSON.parse(fs.readFileSync(`${__dirname}\\..\\temp\\${config.supported_crypto_currencys[i]}_PRICES_TEMP`, 'utf8'))})
   }
 
   // Create new temp
