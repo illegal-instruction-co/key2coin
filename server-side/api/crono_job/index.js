@@ -15,6 +15,7 @@ const CronoJobs = function() {
   try {
     for (var i = 0; i < config.crono.jobs.length; i++) {
       el = config.crono.jobs[i]
+      require(`.\\${el.job}`)()
       setInterval(function(){
         try {
           Log(config.basis.log_prefix, {

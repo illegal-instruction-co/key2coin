@@ -96,11 +96,30 @@ Config.crono = {
       },
       {
         job: "24h_change_statistics_updater",
-        timer: 2 * Time.second
+        timer: 5 * Time.minute
       }
   ]
 
 }
+
+/*
+  Supported currencys
+*/
+Config.supported_currencys = [
+  "USD",
+  "EUR",
+  "TRY",
+  "SEK"
+]
+
+/*
+  Supported crypto currencys
+*/
+Config.supported_crypto_currencys = [
+  "BTC",
+  "ETH",
+  "LTC"
+]
 
 
 module.exports = Config;
