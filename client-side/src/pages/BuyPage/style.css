@@ -26,6 +26,7 @@
   margin: 10px 0px;
 }
 .buying-card-footer {
+  padding-top: 35px;
   text-align: center;
   width: 100%;
   min-height: 50px;
@@ -62,8 +63,9 @@
   margin-right: 1px;
   margin-left: 1px;
   border-radius: 5px;
-  color: var(--defaultColor);
-  border: 1px solid var(--softColor);
+  color: var(--softColor);
+  border-bottom: 1px solid var(--softColor);
+  border-left: 1px solid var(--softColor);
   width: 100%;
   text-align: center;
   cursor: pointer;

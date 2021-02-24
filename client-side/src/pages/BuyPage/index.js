@@ -156,7 +156,7 @@ export default function BuyPage() {
                                 <button className="btn-buy" onClick={() => setModalShow(!modalShow)}>{selectLang.buy_now}</button>
                                 <small>{selectLang.payment_control}</small>
                             </div>
-                            <div className="buying-card-footer"><img src="/assets/icons/visa.svg" alt=""/><img src="/assets/icons/mastercard.svg" alt=""/></div>
+                            <div className="buying-card-footer"><img style={{float: "left"}} src="/assets/icons/visa.svg" alt=""/><img style={{float: "right"}} src="/assets/icons/mastercard.svg" alt=""/></div>
                         </div>
                     </Col>
                     <Col md={6} lg={8}>
