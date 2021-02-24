@@ -57,7 +57,7 @@ export default function BuyPage() {
     }, [])
     useEffect(() => {
         async function getCrypto(){
-            var res = await axios.get(`http://localhost:3000/24h`)
+            var res = await axios.get(`http://localhost:3001/24h`)
 
             var crypto_data = []
             var keys = Object.keys(res.data).map((key) => key);

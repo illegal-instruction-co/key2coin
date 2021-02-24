@@ -17,7 +17,7 @@ Config.development = {
   /*
     Development port
   */
-  port: 3000
+  port: 3001
 }
 
 Config.basis = {
