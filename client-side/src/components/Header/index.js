@@ -32,7 +32,7 @@ export default function Header() {
             <Col className="menu" xs={5} md={6}>
                 <Link to={`/${lang}/buy`}>{selectLang.nav_buy}</Link>
                 <Link to={`/${lang}/redeem`}>{selectLang.nav_redeem}</Link>
-                <Link to={`/${lang}/`}>{selectLang.developers}</Link>
+                <a href={`https://docs.key2coin.com`}>{selectLang.developers}</a>
             </Col>
             <Col className="menu-action" xs={4} md={2}>
                 <HeaderMiniSelect defaultValue={lang} options={langs} onChange={(e) => handleChangeLang(e.target.value)} />

@@ -5,6 +5,8 @@
   margin-top: 10px;
   margin-bottom: 10px;
   background-color: transparent;
+  border-bottom: .1px solid var(--softColor);
+  border-right: .1px solid var(--softColor);
 }
 .buying-card img {
   user-select: none;
@@ -51,14 +53,16 @@
 .static-values {
   display: flex;
   margin-top: 5px;
+  transition: transform .2s;
 }
+
 .static-values div {
   background-color: transparent;
   padding: 10px 5px;
   margin-right: 1px;
   margin-left: 1px;
   border-radius: 5px;
-  color: var(--softColor);
+  color: var(--defaultColor);
   border: 1px solid var(--softColor);
   width: 100%;
   text-align: center;
@@ -66,7 +70,8 @@
   transition: all 0.3s ease-in-out;
 }
 .static-values div:hover {
-  background-color: var(--second);
+  transform: scale(1.1);
+  background-color: var(--button);
   color: var(--white);
   user-select: none;
 }
@@ -112,7 +117,12 @@
   -moz-box-shadow: 0px 5px 10px 0px rgba(190, 190, 190, 0.5);
   box-shadow: 0px 5px 10px 0px rgba(190, 190, 190, 0.5);
   color: var(--softColor);
+  transition: transform .2s;
 }
+.crypto-card:hover {
+  transform: scale(1.02);
+}
+
 .crypto-card,
 .crypto-card .crypto-card-header,
 .crypto-card .crypto-card-body,
@@ -183,9 +193,10 @@
   color: var(--second);
   width: 100%;
   text-align: center;
-  padding: 50px;
+  padding: 10px;
   margin-top: 10px;
-  min-height: 370px;
+  min-height: 250px;
+  max-height: 250px;
   border-radius: 5px;
   -webkit-box-shadow: 0px 5px 10px 0px rgba(190, 190, 190, 0.5);
   -moz-box-shadow: 0px 5px 10px 0px rgba(190, 190, 190, 0.5);
