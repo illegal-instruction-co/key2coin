@@ -1,6 +1,6 @@
 const Time = {}
 
-Time.second = 1
+Time.second = 1 * 1000
 Time.minute = Time.second * 60
 Time.hour = Time.minute * 60
 Time.day = Time.hour * 24

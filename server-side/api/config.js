@@ -39,6 +39,14 @@ Config.basis = {
     necessary points
   */
   delay: 10,
+
+  /*
+    JWT
+  */
+  JWT: {
+    secret_key_lenght: 20,
+    secret_key_temp: 'jwt_secret_key_temp',
+  },
 }
 
 /*
