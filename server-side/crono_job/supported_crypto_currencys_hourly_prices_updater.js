@@ -22,15 +22,16 @@ const SupportedCryptoCurrencysHourlyPricesUpdater = function() {
 
   try {
     prices = JSON.parse(fs.readFileSync(`${__dirname}\\..\\temp\\${config.basis.hourly_prices.data_temp}`, 'utf8'))
+    if(prices.length === 24) prices.shift()
   } catch {
-    prices = {}
+    prices = []
   }
 
-  prices[jobTime] = []
+  prices.push({ job_time: jobTime, crypto_currencys: [] })
 
   for (var i = 0; i < config.supported_crypto_currencys.length; i++) {
     createPrices(config.supported_crypto_currencys[i])
-    prices[jobTime].push({ crypto_currency: config.supported_crypto_currencys[i], data:JSON.parse(fs.readFileSync(`${__dirname}\\..\\temp\\${config.supported_crypto_currencys[i]}_PRICES_TEMP`, 'utf8'))})
+    prices.find(x => x.job_time === jobTime).crypto_currencys.push({ crypto_currency: config.supported_crypto_currencys[i], currencys:JSON.parse(fs.readFileSync(`${__dirname}\\..\\temp\\${config.supported_crypto_currencys[i]}_PRICES_TEMP`, 'utf8'))})
   }
 
   // Create new temp

@@ -109,13 +109,8 @@ Config.crono = {
       },
       {
         job: "supported_crypto_currencys_hourly_prices_updater",
-        timer: Time.hour,
-        run_at_start: true
-      },
-      {
-        job: "supported_crypto_currencys_hourly_prices_flusher",
-        timer: Time.day,
-        run_at_start: true
+        timer: Time.second,
+        run_at_start: false
       }
   ]
 
