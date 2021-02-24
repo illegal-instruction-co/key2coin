@@ -1,0 +1,60 @@
+.lang-curr-select select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: transparent;
+  background-image: none;
+  text-align: center;
+  font-size: 12px;
+}
+/* Remove IE arrow */
+.lang-curr-select select::-ms-expand {
+  display: none;
+}
+/* Custom Select */
+.lang-curr-select {
+  position: relative;
+  display: flex;
+  width: 50px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid var(--defaultColor);
+  overflow: hidden;
+  margin-right: 5px;
+  border-color: rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+.lang-curr-select:hover {
+  border: 1px solid var(--third);
+}
+.lang-curr-select select {
+  flex: 1;
+  padding: 0 0.5em;
+  cursor: pointer;
+  color: var(--white);
+  background: #485461;
+}
+/* Arrow */
+.lang-curr-select::after {
+  content: "\25BC";
+  position: absolute;
+  top: 0;
+  right: 2px;
+  padding: 1;
+  font-size: 12px;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: 0.25s all ease;
+  -o-transition: 0.25s all ease;
+  transition: 0.25s all ease;
+  transform: translateY(60%);
+}
+@media only screen and (max-width: 600px) {
+  .lang-curr-select select {
+    font-size: 10px;
+  }
+}

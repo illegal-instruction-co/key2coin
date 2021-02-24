@@ -1,0 +1,12 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500);
+.notfound-subtitle {
+  font-size: 2em;
+  text-align: center;
+  font-weight: 100;
+}
+
+.notfound-title {
+  text-align: center;
+  font-size: 10em;
+  font-weight: 100;
+}

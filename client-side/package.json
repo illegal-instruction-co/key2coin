@@ -1,0 +1,46 @@
+{
+  "name": "crypto-voucher",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.2",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.7.1",
+    "axios": "^0.21.1",
+    "lodash": "^4.17.21",
+    "react": "^17.0.1",
+    "react-context-hook": "^2.2.0",
+    "react-credit-cards": "^0.8.3",
+    "react-dom": "^17.0.1",
+    "react-grid-system": "^7.1.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.2",
+    "recharts": "^2.0.7",
+    "web-vitals": "^1.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

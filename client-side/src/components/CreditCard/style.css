@@ -1,0 +1,19 @@
+.payment-content h1 {
+  text-align: center;
+}
+.payment-content input {
+  width: 100%;
+  margin-top: 5px;
+  padding: 5px;
+  border: 1px solid var(--softColor);
+  border-radius: 5px;
+}
+.form-actions .btn-pay {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: var(--button);
+  color: var(--white);
+  margin-top: 5px;
+  cursor: pointer;
+}

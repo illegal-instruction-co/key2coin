@@ -1,0 +1,198 @@
+.buying-card {
+  padding: 20px;
+  background-color: var(--white);
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: transparent;
+}
+.buying-card-header {
+}
+.buying-card-body {
+  box-sizing: border-box;
+}
+.buying-card-body-subtitle {
+  margin: 10px 0px;
+}
+.buying-card-footer {
+  text-align: center;
+  width: 100%;
+  min-height: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.currency-input {
+  padding: 5px;
+  border-bottom: 1px solid var(--softColor);
+  width: auto;
+  display: flex;
+  color: var(--softColor);
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.01);
+}
+.currency-input input {
+  border: none;
+  outline: none;
+  width: 100%;
+  background-color: transparent;
+}
+.currency-input div {
+  padding: 5px;
+}
+.static-values {
+  display: flex;
+  margin-top: 5px;
+}
+.static-values div {
+  background-color: transparent;
+  padding: 10px 5px;
+  margin-right: 1px;
+  margin-left: 1px;
+  border-radius: 5px;
+  color: var(--softColor);
+  border: 1px solid var(--softColor);
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.static-values div:hover {
+  background-color: var(--second);
+  color: var(--white);
+  user-select: none;
+}
+.input-select-together {
+  border-bottom: 1px solid var(--softColor);
+  padding: 5px 0px;
+  align-self: center;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.01);
+  border-radius: 5px;
+}
+.input-select-together input,
+.input-select-together select {
+  font-size: 50px;
+  padding: 5px;
+  border: none;
+  outline: none;
+  color: var(--softColor);
+  background-color: transparent;
+}
+.input-select-together input {
+  width: 100%;
+  color: var(--defaultColor);
+}
+.btn-buy {
+  padding: 20px;
+  background-color: var(--button);
+  color: var(--white);
+  font-weight: 600;
+  border: none;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.crypto-card {
+  background-color: #485461;
+  background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+  border-radius: 5px;
+  margin-top: 51.2745px;
+  margin-bottom: 10px;
+  -webkit-box-shadow: 0px 5px 10px 0px rgba(190, 190, 190, 0.5);
+  -moz-box-shadow: 0px 5px 10px 0px rgba(190, 190, 190, 0.5);
+  box-shadow: 0px 5px 10px 0px rgba(190, 190, 190, 0.5);
+  color: var(--softColor);
+}
+.crypto-card,
+.crypto-card .crypto-card-header,
+.crypto-card .crypto-card-body,
+.crypto-card .crypto-card-footer {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.crypto-card .crypto-card-header {
+  display: flex;
+}
+.crypto-card .crypto-card-header span {
+  position: absolute;
+  right: 20px;
+  top: 70px;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--button);
+}
+.crypto-card .crypto-card-body div {
+  width: 100%;
+  font-size: 12px;
+}
+.crypto-card .crypto-card-body .crypto-status {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--button);
+}
+.rt-price {
+  font-weight: 600;
+  font-size: 20px !important;
+}
+.modal-area {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.185);
+  z-index: 1;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  display: flex;
+}
+.modal {
+  min-height: 200px;
+  background-color: var(--white);
+  padding: 30px;
+  border-radius: 5px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+.information-row {
+  background-color: #485461;
+  background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+  padding: 50px 0px;
+  margin-top: 80px;
+  margin-bottom: 80px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.information-card {
+  background: var(--third);
+  color: var(--second);
+  width: 100%;
+  text-align: center;
+  padding: 50px;
+  margin-top: 10px;
+  min-height: 370px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 5px 10px 0px rgba(190, 190, 190, 0.5);
+  -moz-box-shadow: 0px 5px 10px 0px rgba(190, 190, 190, 0.5);
+  box-shadow: 0px 5px 10px 0px rgba(190, 190, 190, 0.5);
+}
+.information-card small {
+  width: 100%;
+  color: var(--defaultColor);
+}
+.information-card img {
+  width: 64px;
+}
+@media only screen and (max-width: 575px) {
+  .information-card {
+    padding: 20px;
+    margin-top: 10px;
+    min-height: 100px;
+  }
+}

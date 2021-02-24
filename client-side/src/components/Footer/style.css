@@ -1,0 +1,30 @@
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 2rem;
+  background-color: #efefef;
+  text-align: center;
+  font-size: 14px;
+  color: var(--defaultColor);
+}
+footer .footer-links {
+  margin-bottom: 10px;
+}
+footer .footer-links a {
+  color: var(--defaultColor);
+  font-size: 14px;
+  width: 100%;
+}
+footer .footer-links a:hover {
+  color: var(--button);
+}
+@media only screen and (max-width: 575px) {
+  footer {
+    font-size: 12px;
+  }
+  footer .footer-links a {
+    font-size: 12px;
+  }
+}

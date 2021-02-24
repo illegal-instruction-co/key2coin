@@ -1,0 +1,71 @@
+:root {
+  --defaultColor: #333333;
+  --hover: #;
+  --softColor: #c4c4c4;
+  --white: #ffffff;
+  --button: #f7931a;
+  --first: #f7931a;
+  --second: #525d7d;
+  --third: #ffffff;
+  --fourth: #4d4d4d;
+  --fifth: #ffcb7f;
+}
+* {
+}
+
+::-moz-selection {
+  background: var(--button);
+  color: var(--defaultColor);
+}
+::selection {
+  background: var(--button);
+  color: var(--defaultColor);
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+body {
+  position: relative;
+  min-height: 100%;
+  margin: 0;
+  padding-bottom: 6rem;
+  font-family: sans-serif;
+  font-size: calc(14px + (26 - 14) * ((100vw - 400px) / (2560 - 400)));
+  background-image: url("./assets/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+input,
+select,
+button {
+  font-size: calc(14px + (26 - 14) * ((100vw - 400px) / (2560 - 400)));
+  font-family: sans-serif;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+small {
+  color: var(--softColor);
+  font-size: 10px;
+}
+a {
+  text-decoration: none;
+  color: var(--defaultColor);
+  transition: all 0.3s ease-in-out;
+}
+a:hover {
+  color: var(--hover);
+}
+#root,
+.main {
+  min-height: 100vh;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
