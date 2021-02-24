@@ -51,11 +51,14 @@ export default function BuyPage() {
 
     let { lang } = useParams();
     const selectLang = languages.hasOwnProperty(lang) ? languages[lang] : languages["en"]
-    
+
+    useEffect(() => {
+      document.title = 'Key2Pay | Buy crypto currency keys'
+    }, [])
     useEffect(() => {
         async function getCrypto(){
             var res = await axios.get(`http://localhost:3000/24h`)
-            
+
             var crypto_data = []
             var keys = Object.keys(res.data).map((key) => key);
 
@@ -77,13 +80,13 @@ export default function BuyPage() {
         }
         getCrypto()
     },[currency,setCryptoState])
-    
+
     function moneyformat(number) {
         return new Intl.NumberFormat().format(number)
     }
     function handleChangeVoucherVal(value){
         value = value.toString().replace(",",".")
-        value = value === "" ? 0 : value 
+        value = value === "" ? 0 : value
         var selectedPrice = cryptoState.filter(cs => cs.code === selected)[0]
         var toCrypto = parseFloat(value)/selectedPrice.prices.filter(c => c.currency === currency)[0].result.lastPrice
         setVoucherVal(value)
@@ -104,28 +107,28 @@ export default function BuyPage() {
     }, [cryptoState,currency])
     function shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
-      
+
         // While there remain elements to shuffle...
         while (0 !== currentIndex) {
-      
+
           // Pick a remaining element...
           randomIndex = Math.floor(Math.random() * currentIndex);
           currentIndex -= 1;
-      
+
           // And swap it with the current element.
           temporaryValue = array[currentIndex];
           array[currentIndex] = array[randomIndex];
           array[randomIndex] = temporaryValue;
         }
-      
+
         return array;
       }
     return (
         <>
             <Container>
                 <Row justify="between">
-                    <Col md={6} lg={4} style={{ 
-                                paddingLeft: ['sm'].includes(screenClass) ? '15px' : '5px', 
+                    <Col md={6} lg={4} style={{
+                                paddingLeft: ['sm'].includes(screenClass) ? '15px' : '5px',
                                 paddingRight: ['sm'].includes(screenClass) ? '15px' : '5px'
                                 }}
                             >
@@ -160,9 +163,9 @@ export default function BuyPage() {
                         <Row>
                             {
                                 cryptoState.length > 0 &&
-                                cryptoState.map((crypto,index) => 
-                                    <Col xs={6} lg={4} key={index} style={{ 
-                                        paddingLeft: ['sm'].includes(screenClass) ? '15px' : '5px', 
+                                cryptoState.map((crypto,index) =>
+                                    <Col xs={6} lg={4} key={index} style={{
+                                        paddingLeft: ['sm'].includes(screenClass) ? '15px' : '5px',
                                         paddingRight: ['sm'].includes(screenClass) ? '15px' : '5px'
                                         }}
                                     >
@@ -170,7 +173,7 @@ export default function BuyPage() {
                                             <div className="crypto-card-header">
                                                 {crypto_currencys.filter(cc => cc.code === crypto.code)[0].name} <span>{crypto.code}</span></div>
                                             <div className="crypto-card-body">
-                                                <div className="rt-price">{selectedCurrency.text} {moneyformat(crypto.prices.filter(c => c.currency === currency)[0].result.lastPrice)}</div> 
+                                                <div className="rt-price">{selectedCurrency.text} {moneyformat(crypto.prices.filter(c => c.currency === currency)[0].result.lastPrice)}</div>
                                                 <div><span className="crypto-status">{parseFloat(crypto.priceChangePercent).toFixed(2)}%</span> {selectLang.for_last_24_hours}</div>
                                             </div>
                                             <div className="crypto-card-footer">
@@ -189,7 +192,7 @@ export default function BuyPage() {
                         </Row>
                     </Col>
                 </Row>
-                
+
             </Container>
             <div className="information-row">
                 <Container>
@@ -236,13 +239,13 @@ export default function BuyPage() {
             </div>
             <div className="modal-area" style={{display:modalShow ? "block" : "none"}} onClick={() => setModalShow(!modalShow)} />
             <div className="modal" style={{width:"350px",display:modalShow ? "block" : "none"}}>
-                <CreditCard 
+                <CreditCard
                     handleClickPay={(e) => setCreditCardInfo(e)}
-                    cc_card_number={selectLang.card_number} 
-                    cc_name={selectLang.name} 
-                    cc_valid_thru={selectLang.valid_thru} 
-                    cc_cvc={selectLang.cvc} 
-                    cc_pay={selectLang.pay} 
+                    cc_card_number={selectLang.card_number}
+                    cc_name={selectLang.name}
+                    cc_valid_thru={selectLang.valid_thru}
+                    cc_cvc={selectLang.cvc}
+                    cc_pay={selectLang.pay}
                     cc_payment={selectLang.payment}
                     />
             </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { Col, Container, Row } from 'react-grid-system'
 import { useParams } from 'react-router-dom'
 
@@ -13,6 +13,11 @@ export default function Redeem() {
 
     let { lang } = useParams();
     const selectLang = languages.hasOwnProperty(lang) ? languages[lang] : languages["en"]
+
+    useEffect(() => {
+      document.title = 'Key2Pay | Redeem crypto currency keys'
+    }, [])
+
     return (
         <Container>
             <Row justify="center">
@@ -26,12 +31,12 @@ export default function Redeem() {
                             <label>{selectLang.email}</label>
                             <input type="email" name="email" value={email} placeholder={selectLang.email_ph} onChange={(e) => setEmail(e.target.value)} />
                         </div>
-                        
+
                         <div className="redeem-form-checkbox">
                             <input type="checkbox" name="term" checked={term} id="term" onClick={() => setTerm(!term)} />
                             <label htmlFor="term">{selectLang.term_check}</label>
                         </div>
-                        
+
                         <div className="redeem-form-checkbox">
                             <input type="checkbox" name="newsletter" checked={newsletter} id="newsletter" onClick={() => setNewsletter(!newsletter)} />
                             <label htmlFor="newsletter">{selectLang.newsletter_check}</label>
