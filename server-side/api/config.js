@@ -2,6 +2,7 @@
   Colors
 */
 const Colors = require('./utilitys/colors')
+const Time = require('./utilitys/time')
 
 const Config = {}
 
@@ -31,7 +32,13 @@ Config.basis = {
   /*
     USDT/USD assumption
   */
-  usdtusd: 1.05
+  usdtusd: 1.05,
+
+  /*
+    Regular delay for
+    necessary points
+  */
+  delay: 10,
 }
 
 /*
@@ -59,6 +66,20 @@ Config.external = {
   exchangeratesapi: {
     api_endpoint: "https://api.exchangeratesapi.io"
   }
+
+}
+
+/*
+  Cronojobs
+*/
+Config.crono = {
+
+  jobs: [
+      {
+        job: "jwt_secret_key_generator",
+        timer: Time.day
+      }
+  ]
 
 }
 

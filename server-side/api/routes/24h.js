@@ -6,7 +6,7 @@ const config = require('../config')
 const fetch = require('node-fetch');
 
 /*
-  Modular functions
+Modular functions
 */
 const Log = require('../functions/log')
 const BREP = require('../functions/binance_random_endpoint')
@@ -14,19 +14,6 @@ const Wait = require('../functions/wait')
 
 router.get('/', function(req, res, next) {
   res.json({
-    crypto_currencys: [
-      "BTC",
-      "ETH",
-      "LTC",
-      "DOGE",
-      "GRT",
-      "XRP"
-    ],
-    currencys: [
-      "EUR",
-      "USD",
-      "TRY"
-    ],
     routes: [
       {
         method: "GET",
@@ -42,9 +29,9 @@ router.get('/', function(req, res, next) {
 });
 
 /*
-  Route information:
-  Gets currency informations filtered by
-  cryptocurrency
+Route information:
+Gets currency informations filtered by
+cryptocurrency
 */
 router.get('/crypto_currency', function(req, res, next) {
 
@@ -56,7 +43,7 @@ router.get('/crypto_currency', function(req, res, next) {
   })
 
   /*
-    Request log
+  Request log
   */
   requestLog(req,res)
 })
@@ -65,17 +52,18 @@ router.get('/crypto_currency/:symbol', function(req, res, next) {
 
   function getResponse(endPoint) {
     fetch(endPoint + `/api/v3/ticker/24hr?symbol=${req.params.symbol}USDT`)
-      .then(res => res.json())
-      // Successfully got 24hr data from binance servers
-      .then(body => interpretingCurrencys(body))
-      // Couldn't connect that binance endpoint
-      .catch(function() {
-        /*
-          Choose random binance endpoint
-          and get response from there
-        */
-        getResponse(BREP())
-      })
+    .then(res => res.json())
+    // Successfully got 24hr data from binance servers
+    .then(body => interpretingCurrencys(body))
+    // Couldn't connect that binance endpoint
+    .catch(async function() {
+      /*
+      Choose random binance endpoint
+      and get response from there
+      */
+      await Wait(config.basis.delay)
+      getResponse(BREP())
+    })
   }
 
   function interpretingCurrencys(rawUsdtData) {
@@ -83,10 +71,10 @@ router.get('/crypto_currency/:symbol', function(req, res, next) {
 
     function getRates() {
       fetch(config.external.exchangeratesapi.api_endpoint + `/latest?base=USD&symbols=EUR,TRY`)
-        .then(res => res.json())
-        // Successfully got USD TRY exchange rates from server
-        .then(body => {
-          res.json({
+      .then(res => res.json())
+      // Successfully got USD EUR TRY exchange rates from server
+      .then(body => {
+        res.json({
 
           openTime: rawUsdtData.openTime,
           closeTime: rawUsdtData.closeTime,
@@ -137,37 +125,36 @@ router.get('/crypto_currency/:symbol', function(req, res, next) {
             }
           ]
         })
-        })
-        // Couldn't connect that exchange rates api endpoint
-        .catch(async function() {
-          await Wait(500)
-          interpretingCurrencys(rawUsdtData)
-        })
+      })
+      // Couldn't connect that exchange rates api endpoint
+      .catch(async function() {
+        await Wait(config.basis.delay)
+        interpretingCurrencys(rawUsdtData)
+      })
     }
 
     getRates()
   }
 
   /*
-    Choose random binance endpoint
-    and get response from there
+  Choose random binance endpoint
+  and get response from there
   */
   getResponse(BREP())
 
   /*
-    Request log
+  Request log
   */
   requestLog(req,res)
 
 });
 
 /*
-  Route information:
-  Gets cryptocurrency informations filtered by
-  currency
+Route information:
+Gets cryptocurrency informations filtered by
+currency
 */
 router.get('/currency', function(req, res, next) {
-
   res.json({
     error: 'missed parameters',
     expected: [
@@ -176,25 +163,41 @@ router.get('/currency', function(req, res, next) {
   })
 
   /*
-    Request log
+  Request log
   */
   requestLog(req,res)
 })
 
 router.get('/currency/:symbol', function(req, res, next) {
-  res.json({})
+
+  function getRates() {
+    fetch(config.external.exchangeratesapi.api_endpoint + `/latest?base=USD&symbols=${req.params.symbol}`)
+    .then(res => res.json())
+    // Successfully got USD ${symbol} exchange rates from server
+    .then(body => {
+      res.json()
+    })
+    .catch(async function() {
+      await Wait(config.basis.delay)
+      getRates()
+    })
+  }
+
+  function interpretingCryptoCurrencys() {
+
+  }
 
   /*
-    Request log
+  Request log
   */
   requestLog(req,res)
 });
 
 
 /*
-  Request log for
-  spesificated
-  route
+Request log for
+spesificated
+route
 */
 function requestLog(req, res) {
   Log(config.basis.log_prefix, {
