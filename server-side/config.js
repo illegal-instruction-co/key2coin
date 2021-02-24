@@ -53,6 +53,13 @@ Config.basis = {
   */
   daily_statistics: {
     data_temp: '24h_changes_statistics'
+  },
+
+  /*
+    Hourly prices
+  */
+  hourly_prices: {
+    data_temp: 'hourly_prices'
   }
 }
 
@@ -97,6 +104,14 @@ Config.crono = {
       {
         job: "24h_change_statistics_updater",
         timer: 5 * Time.minute
+      },
+      {
+        job: "supported_crypto_currencys_hourly_prices_updater",
+        timer: Time.hour
+      },
+      {
+        job: "supported_crypto_currencys_hourly_prices_flusher",
+        timer: Time.day
       }
   ]
 

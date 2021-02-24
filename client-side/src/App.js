@@ -13,7 +13,7 @@ import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 
 function App() {
-  let location = useLocation(); 
+  let location = useLocation();
   return (
     <ScreenClassProvider>
       <Switch location={location}>
@@ -68,7 +68,7 @@ function App() {
   );
 }
 
-const initialState = { 
+const initialState = {
   currency: "USD",
   language: "en",
   currencies: [
@@ -108,6 +108,7 @@ const initialState = {
     {name:"Etherium",code:"ETH"},
     {name:"Litecoin",code:"LTC"},
     {name:"Dogecoin",code:"DOGE"},
+    {name:"Bitcoin Cash",code:"BCH"},
     {name:"The Graph",code:"GRT"},
     {name:"Ripple",code:"XRP"}
   ]

@@ -80,7 +80,7 @@
 }
 .input-select-together input,
 .input-select-together select {
-  font-size: 50px;
+  font-size: 2rem;
   padding: 5px;
   border: none;
   outline: none;
