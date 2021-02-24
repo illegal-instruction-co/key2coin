@@ -1,24 +1,78 @@
-Set K2CShell = CreateObject ("WScript.Shell")
+Set K2CSSShell = CreateObject ("WScript.Shell")
+Set K2CCSShell = CreateObject ("WScript.Shell")
+Set oWSH = CreateObject("WScript.Shell")
+ vbsInterpreter = "cscript.exe"
 
-Sub RunServerSide()
-  MsgBox("Running client-side instance")
-  K2CShell.run "cmd.exe /C cd server-side && npm start"
-End Sub
+ Call ForceConsole()
 
-Sub RunClientSide()
-  MsgBox("Running client-side instance")
-  K2CShell.run "cmd.exe /C cd client-side && npm start"
-End Sub
+ Function printf(txt)
+    WScript.StdOut.WriteLine txt
+ End Function
 
-Sub Main()
-      ' Message box
-      MsgBox("Starting K2C development instance")
+ Function printl(txt)
+    WScript.StdOut.Write txt
+ End Function
 
-      ' Run server-side instance
-      call RunServerSide
+ Function scanf()
+    scanf = LCase(WScript.StdIn.ReadLine)
+ End Function
 
-      'Run client-side instance
-      call RunClientSide
-End Sub
+ Function wait(n)
+    WScript.Sleep Int(n * 1000)
+ End Function
 
-call Main
+ Function ForceConsole()
+    If InStr(LCase(WScript.FullName), vbsInterpreter) = 0 Then
+        oWSH.Run vbsInterpreter & " //NoLogo " & Chr(34) & WScript.ScriptFullName & Chr(34)
+        WScript.Quit
+    End If
+ End Function
+
+ Function cls()
+    For i = 1 To 50
+        printf ""
+    Next
+ End Function
+
+ Sub RunServerSide()
+   K2CSSShell.run "cmd.exe /C cd server-side && npm start"
+ End Sub
+
+ Sub RunClientSide()
+   K2CCSShell.run "cmd.exe /C cd client-side && npm start"
+ End Sub
+
+ Sub Main()
+   printf " -----------------------------"
+   printf "|        _  __ ___ ___       |"
+   printf "|       | |/ /|_  ) __|      |"
+   printf "|       | ' <  / / (__       |"
+   printf "|       |_|\_\/___\___|      |"
+   printf "|       Dev Ins.   v1.0      |"
+   printf " -----------------------------"
+   printf " Creating instance... "
+
+   wait(1)
+
+   ' Message box
+   printf "Starting K2C server-side instance"
+
+   ' Run server-side instance
+   call RunServerSide
+
+   ' Message box
+   printf "Starting K2C client-side instance"
+
+   'Run client-side instance
+   call RunClientSide
+
+   ' printf "Server-side instance id: 1"
+   ' printf "Client-side instance id: 2"
+   '
+   ' ' Run restart manager
+   ' call RestartInstance
+
+   wait(1)
+   End Sub
+
+ call Main

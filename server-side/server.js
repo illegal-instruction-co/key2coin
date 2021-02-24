@@ -3,6 +3,8 @@ const http = require('http');
 const config = require("./config")
 const cronoJobs = require("./crono_job/index")
 
+process.title = 'k2c_server_side';
+
 const port = process.env.PORT === undefined ? config.development.port : process.env.PORT
 
 /*

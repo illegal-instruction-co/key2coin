@@ -119,7 +119,9 @@ Config.supported_crypto_currencys = [
   "BTC",
   "ETH",
   "LTC",
-  "DOGE"
+  "DOGE",
+  "BCH",
+  "XRP"
 ]
 
 
