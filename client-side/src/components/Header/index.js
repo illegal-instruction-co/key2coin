@@ -27,7 +27,7 @@ export default function Header() {
     return (
         <Row className="header" justify="center">
             <Col className="logo" xs={3} md={2}>
-                <img src={logo} alt="" />
+                <Link to={`/${lang}/buy`}> <img src={logo} alt="" /> </Link>
             </Col>
             <Col className="menu" xs={5} md={6}>
                 <Link to={`/${lang}/buy`}>{selectLang.nav_buy}</Link>

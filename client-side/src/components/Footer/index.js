@@ -12,12 +12,11 @@ export default function Footer() {
                     <Col sm={6}>
                         <div className="footer-links">
                             <Link to="/en/terms-conditions">Terms and Conditions</Link>
-                            <br/>
                             <Link to="/en/cookies-policy">Privacy policy</Link>
                         </div>
                     </Col>
                     <Col sm={6}>
-                        <img src="/assets/icons/visa.svg" alt=""/><img src="/assets/icons/mastercard.svg" alt=""/>
+                        <img src="/assets/icons/visa.svg" alt=""/> <img src="/assets/icons/mastercard.svg" alt=""/>
                     </Col>
                 </Row>
             </Container>

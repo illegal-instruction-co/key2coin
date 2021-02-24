@@ -17,6 +17,7 @@ footer img {
   -moz-user-drag: none;
   -o-user-drag: none;
   user-drag: none;
+  margin-right: 10px;
 }
 
 footer .footer-links {
@@ -26,6 +27,8 @@ footer .footer-links a {
   color: var(--defaultColor);
   font-size: 14px;
   width: 100%;
+  margin-right: 10px;
+  display: inline;
 }
 footer .footer-links a:hover {
   color: var(--button);
