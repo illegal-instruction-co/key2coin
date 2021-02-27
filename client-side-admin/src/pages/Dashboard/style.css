@@ -1,0 +1,34 @@
+.card-total {
+  width: 100%;
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(155, 155, 155, 0.3);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(155, 155, 155, 0.3);
+  box-shadow: 0px 0px 5px 0px rgba(155, 155, 155, 0.3);
+  margin-bottom: 10px;
+  background-image: linear-gradient(
+    to left bottom,
+    #525d7d,
+    #747992,
+    #9596a8,
+    #b5b5be,
+    #d5d5d5
+  );
+  color: var(--white);
+}
+.card-total-title {
+  font-weight: 600;
+  font-size: 16px;
+}
+.card-total-count {
+  font-size: 30px;
+  font-weight: 600;
+  padding: 10px 0px;
+}
+.card-total-footer .positive {
+  font-weight: 600;
+  color: var(--success);
+}
+.card-total-footer .negative {
+  font-weight: 600;
+  color: var(--danger);
+}

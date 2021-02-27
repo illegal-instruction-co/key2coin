@@ -11,7 +11,7 @@ const Log = require('../functions/log')
 router.get('/', function(req, res, next) {
 
   // Get statistics temp
-  let statistics =  fs.readFileSync(`${__dirname}\\..\\temp\\${config.basis.daily_statistics.data_temp}`, 'utf8')
+  let statistics =  fs.readFileSync(`${__dirname}\\..\\temp\\${config.basis.daily_statistics.data_temp}`, 'utf8') ? fs.readFileSync(`${__dirname}\\..\\temp\\${config.basis.daily_statistics.data_temp}`, 'utf8') : {}
 
   res.json(JSON.parse(statistics))
 

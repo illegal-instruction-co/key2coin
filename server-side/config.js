@@ -138,5 +138,107 @@ Config.supported_crypto_currencys = [
   "XRP"
 ]
 
+/*
+  Supported Languages
+*/
+Config.supported_languages = {
+    "en" : {
+        "nav_buy": "Buy",
+        "nav_redeem": "Redeem Key",
+        "buy_instantly": "Buy instantly",
+        "voucher_value": "Key balance value",
+        "currently_worth": "Currently worth",
+        "buy_now": "Buy Now",
+        "payment_control": "We accept main payment methods in your country",
+        "for_last_24_hours":"for last 24 hours",
+        "payment":"Payment",
+        "card_number":"Card Number",
+        "name": "Name",
+        "valid_thru": "Valid Thru",
+        "cvc": "CVC",
+        "pay":"PAY",
+        "enter_the_code": "Enter the key",
+        "enter_the_code_ph": "00000000-0000-0000-0000-000000000000",
+        "email":"E-mail",
+        "email_ph": "your@email.com",
+        "term_check": "* I acknowledge that I have read and fully agree to Key2Coin's Terms & Conditions.",
+        "newsletter_check": "I agree to recieve marketing emails from Key2Coin",
+        "redeem_button_continue": "Continue",
+        "developers": "Developers"
+    },
+    "tr":{
+        "nav_buy": "Satın Al",
+        "nav_redeem": "Key Kullan",
+        "buy_instantly": "Hemen Satın Al",
+        "voucher_value": "Key Bakiye Değeri",
+        "currently_worth": "Şuandaki Değeri",
+        "buy_now": "Hemen Satın Al",
+        "payment_control": "Ülkenizdeki ana ödeme yöntemlerini kabul ediyoruz",
+        "for_last_24_hours":"son 24 saat",
+        "payment":"Ödeme",
+        "card_number":"Kart Numarası",
+        "name": "Ad Soyad",
+        "valid_thru": "SKT",
+        "cvc": "CCV",
+        "pay":"Ödeme Yap",
+        "enter_the_code": "Keyi girin",
+        "enter_the_code_ph": "00000000-0000-0000-0000-000000000000",
+        "email": "E-posta",
+        "email_ph": "sizin@epostanız.com",
+        "term_check": "* Key2Coin Hüküm ve Koşullarını okuduğumu ve tamamen kabul ettiğimi kabul ediyorum.",
+        "newsletter_check": "Key2Coin'dan pazarlama e-postaları almayı kabul ediyorum" ,
+        "redeem_button_continue": "Devam Et",
+        "developers": "Geliştirici"
+    },
+    "fr": {
+        "nav_buy": "Acheter",
+        "nav_redeem": "Utiliser la clé",
+        "buy_instantly": "Acheter maintenant",
+        "voucher_value": "Valeur du solde clé",
+        "currently_worth": "Valeur actuelle",
+        "buy_now": "Acheter maintenant",
+        "payment_control": "Nous acceptons les principaux modes de paiement dans votre pays",
+        "for_last_24_hours": "dernières 24 heures",
+        "payment": "Paiement",
+        "card_number": "Numéro de carte",
+        "name": "Nom Prénom",
+        "valid_thru": "SKT",
+        "cvc": "CCV",
+        "pay": "Payer",
+        "enter_the_code": "Entrez la clé",
+        "enter_the_code_ph": "00000000-0000-0000-0000-000000000000",
+        "email": "E-mail",
+        "email_ph": "votre@email.com",
+        "term_check": "* Je reconnais que j'ai lu et j'accepte pleinement les conditions générales de Key2Coin.",
+        "newsletter_check": "J'accepte de recevoir des e-mails marketing de Key2Coin",
+        "redeem_button_continue": "Continuez",
+        "developers": "Développeuses"
+    },
+    "es": {
+        "nav_buy": "Comprar",
+        "nav_redeem": "Canjear clave",
+        "buy_instantly": "Comprar ahora",
+        "voucher_value": "Valor de saldo clave",
+        "currently_worth": "Valor actual",
+        "buy_now": "Comprar ahora",
+        "payment_control": "Aceptamos los principales métodos de pago de su país",
+        "for_last_24_hours": "últimas 24 horas",
+        "payment": "Pago",
+        "card_number": "Número de tarjeta",
+        "name": "Nombre Apellido",
+        "valid_thru": "SKT",
+        "cvc": "CCV",
+        "pay": "Paga",
+        "enter_the_code": "Introduzca la clave",
+        "enter_the_code_ph": "00000000-0000-0000-0000-000000000000",
+        "email": "E-mail",
+        "email_ph": "tu@email.com",
+        "term_check": "* Reconozco que he leído y acepto totalmente los Términos y condiciones de Key2Coin.",
+        "newsletter_check": "Acepto recibir correos electrónicos de marketing de Key2Coin",
+        "redeem_button_continue": "Continuar",
+        "developers": "Desarrolladores"
+    }
+}
+
 
 module.exports = Config;

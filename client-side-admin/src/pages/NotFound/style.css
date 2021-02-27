@@ -1,0 +1,27 @@
+.notfound-container {
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  z-index: 2;
+}
+.notfound-bg {
+  position: absolute;
+  z-index: 1;
+  background-color: var(--second);
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+.notfound-box {
+  z-index: 2;
+  text-align: center;
+  color: var(--white);
+  font-size: 15rem;
+}
+.notfound-subtitle {
+  font-size: 5rem;
+}

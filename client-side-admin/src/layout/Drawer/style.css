@@ -1,0 +1,75 @@
+.drawer {
+  width: 250px;
+  max-width: 250px;
+  height: 100vh;
+  background-color: var(--fourth);
+  color: var(--third);
+  box-sizing: border-box;
+  display: block;
+  transition: all 0.3s ease-in-out;
+}
+.drawer-header {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  border-bottom: 1px solid var(--softColor);
+  color: var(--first);
+}
+.logo {
+  width: 60%;
+  padding: 0px;
+  cursor: pointer;
+}
+.drawer-items {
+  display: block;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 100%;
+  height: auto;
+}
+.drawer-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.drawer-item i {
+  padding-right: 8px;
+  font-size: 18px;
+}
+.drawer-item,
+.drawer-item i {
+  color: var(--white);
+  transition: all 0.3s ease-in-out;
+}
+.drawer-item:hover {
+  border-left: 4px solid var(--white);
+  background-color: rgba(255, 255, 255, 0.178);
+}
+.drawer-item:hover,
+.drawer-item:hover i {
+  color: var(--first);
+}
+.active-link {
+  border-left: 4px solid var(--white);
+  background-color: rgba(255, 255, 255, 0.178);
+}
+.active-link,
+.active-link i {
+  color: var(--first);
+}
+.drawer-footer {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid var(--softColor);
+}
+.drawer-footer .drawer-footer-item {
+  display: flex;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px 15px;
+  transition: all 0.3s ease-in-out;
+}
+.drawer-footer .drawer-footer-item:hover {
+  background-color: rgba(255, 255, 255, 0.178);
+}

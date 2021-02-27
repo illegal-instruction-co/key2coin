@@ -1,0 +1,17 @@
+.header {
+  width: 100%;
+  height: 50px;
+  background-color: var(--white);
+  padding: 10px;
+  display: flex;
+  border-bottom: 2px solid var(--softColor);
+}
+.header .menu i {
+  cursor: pointer;
+  font-size: 24px;
+  color: var(--dark);
+  transition: all 0.3s ease-in-out;
+}
+.header .menu i:hover {
+  color: var(--first);
+}
