@@ -11,24 +11,7 @@ import CreditCard from '../../components/CreditCard';
 import './style.css'
 
 const staticValues = [10,25,50,100,200]
-const data = [
-    {name: 'Page A', uv: 400},
-    {name: 'Page A', uv: 500},
-    {name: 'Page A', uv: 200},
-    {name: 'Page A', uv: 600},
-    {name: 'Page A', uv: 700},
-    {name: 'Page A', uv: 200},
-    {name: 'Page A', uv: 300},
-    {name: 'Page A', uv: 500},
-    {name: 'Page A', uv: 100},
-    {name: 'Page A', uv: 200},
-    {name: 'Page A', uv: 300},
-    {name: 'Page A', uv: 500},
-    {name: 'Page A', uv: 600},
-    {name: 'Page A', uv: 100},
-    {name: 'Page A', uv: 600},
-    {name: 'Page A', uv: 900},
-];
+
 
 export default function BuyPage() {
     const [voucherVal, setVoucherVal] = useState('50')
@@ -58,25 +41,40 @@ export default function BuyPage() {
     useEffect(() => {
         async function getCrypto(){
             var res = await axios.get(`http://localhost:3001/24h`)
-
+            var hourlyData = await axios.get(`http://localhost:3001/hourly/prices`)
+            
             var crypto_data = []
+            var hourlyGraph = []
             var keys = Object.keys(res.data).map((key) => key);
 
             for (let index = 0; index < keys.length; index++) {
                 const key = keys[index];
+                hourlyGraph.push({crypto : key, data:[]})
+
                 var crypto_ = res.data[key]
                 crypto_.code = key
-                crypto_.data = []
-                var prices_res = crypto_.prices.filter(cp => cp.currency === currency)[0].result
-                var result = Object.keys(prices_res).map((x) => prices_res[x]);
-                for (let b = 0; b < result.length; b++) {
-                    const element = result[b];
-                    crypto_.data.push({name:key,uv:element})
+                crypto_.data = []                
+                for(let key1 in hourlyGraph){
+                    var el = hourlyGraph[key1]
+                    for(let key2 in hourlyData.data){
+                        var el1 = hourlyData.data[key2].crypto_currencys
+                        for(let key3 in el1){
+                            var el2 = el1[key3]
+                            if(el.crypto === el2.crypto_currency){
+                                el.data.push(el2.currencys)
+                            }
+                        }
+                    }
                 }
+                hourlyGraph.filter(hg => hg.crypto === key)[0].data.filter(d => d.filter(c => {
+                    if(c.currency === currency){
+                        crypto_.data.push({name:key,uv:c.result.price})
+                    }
+                }))
                 crypto_data.push(crypto_)
             }
-            setCryptoState(crypto_data)
             console.log(crypto_data)
+            setCryptoState(crypto_data)
         }
         getCrypto()
     },[currency,setCryptoState])
@@ -157,8 +155,8 @@ export default function BuyPage() {
                                 <small>{selectLang.payment_control}</small>
                             </div>
                             <div className="buying-card-footer">
-                              <img style={{float: "left"}} src="/assets/icons/visa.svg" alt=""/>
-                              <img style={{float: "right"}} src="/assets/icons/mastercard.svg" alt=""/>
+                              <img src="/assets/icons/visa.svg" alt=""/>
+                              <img src="/assets/icons/mastercard.svg" alt=""/>
                             </div>
                         </div>
                     </Col>
@@ -182,7 +180,7 @@ export default function BuyPage() {
                                             <div className="crypto-card-footer">
                                                 <div style={{ width: '100%', height: 50 }}>
                                                     <ResponsiveContainer>
-                                                        <LineChart data={shuffle(crypto.data)}>
+                                                        <LineChart data={crypto.data}>
                                                             <Line type="monotone" dataKey="uv" stroke="#8884d8" dot={""}/>
                                                         </LineChart>
                                                     </ResponsiveContainer>
@@ -200,40 +198,40 @@ export default function BuyPage() {
             <div className="information-row">
                 <Container>
                     <Row justify="center">
-                        <Col sm={6} lg={3}>
+                        <Col xs={6} lg={3}>
                             <div className="information-card">
                                 <img src="/assets/icons/gift-card-1.png" alt="" />
-                                <h3>Exchange a gift card</h3>
+                                <h3>{selectLang.card1title}</h3>
                                 <small>
-                                Get a Crypto Voucher with gift cards. The easiest way to exchange other gift cards to Bitcoin
+                                {selectLang.card1content}
                                 </small>
 
                             </div>
                         </Col>
-                        <Col sm={6} lg={3}>
+                        <Col xs={6} lg={3}>
                             <div className="information-card">
                                 <img src="/assets/icons/24-hours-icon-12-1.png" alt="" />
-                                <h3>7/24 Buy</h3>
+                                <h3>{selectLang.card2title}</h3>
                                 <small>
-                                Get a Crypto Voucher with gift cards. The easiest way to exchange other gift cards to Bitcoin
+                                {selectLang.card2content}
                                 </small>
                             </div>
                         </Col>
-                        <Col sm={6} lg={3}>
+                        <Col xs={6} lg={3}>
                             <div className="information-card">
                                 <img src="/assets/icons/checked-1.png" alt="" />
-                                <h3>Secure Shopping</h3>
+                                <h3>{selectLang.card3title}</h3>
                                 <small>
-                                Get a Crypto Voucher with gift cards. The easiest way to exchange other gift cards to Bitcoin
+                                {selectLang.card3content}
                                 </small>
                             </div>
                         </Col>
-                        <Col sm={6} lg={3}>
+                        <Col xs={6} lg={3}>
                             <div className="information-card">
                                 <img src="/assets/icons/clock-1.png" alt="" />
-                                <h3>Fast Processing</h3>
+                                <h3>{selectLang.card4title}</h3>
                                 <small>
-                                Get a Crypto Voucher with gift cards. The easiest way to exchange other gift cards to Bitcoin
+                                {selectLang.card4content}
                                 </small>
                             </div>
                         </Col>

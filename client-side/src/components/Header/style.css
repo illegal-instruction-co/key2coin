@@ -20,6 +20,8 @@
 }
 .header .menu-action {
   display: flex;
+  text-align: right;
+  justify-content: flex-end;
 }
 .logo img {
   width: 100px;
@@ -34,9 +36,22 @@
 .header a:hover {
   color: var(--button);
 }
+.menu-icon {
+  cursor: pointer;
+  width: 35px;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: invert(83%) sepia(1%) saturate(8%) hue-rotate(354deg) brightness(95%)
+    contrast(92%);
+}
+.mobile-menu {
+  padding-top: 15px;
+  display: grid;
+  text-align: center;
+}
 @media only screen and (max-width: 600px) {
   .logo img {
-    width: 30px;
+    width: 60px;
   }
   .header {
     width: 100%;
