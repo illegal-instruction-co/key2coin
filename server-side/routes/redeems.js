@@ -3,22 +3,40 @@ module.exports = function(app, userAuthMiddleWare) {
 
     var router = require("express").Router();
 
-    // Create a new redeem
+    /*
+      Create a new redeem
+      This route will be using by client-side
+    */
     router.post("/", redeem.create);
 
-    // Retrieve all redeem
+    /*
+      Retrieve all redeem
+      This route will be using by admin panel
+    */
     router.get("/", redeem.findAll);
 
-    // Retrieve a single redeem with id
+    /*
+      Retrieve a single redeem with id
+      This route will be using by admin panel
+    */
     router.get("/:id", redeem.findOne);
 
-    // Update a redeem with id
+    /*
+      Update a redeem with id
+      This route will be using by admin panel
+    */
     router.put("/:id", redeem.update);
 
-    // Delete a redeem with id
+    /*
+      Delete a redeem with id
+      This route will be using by admin panel
+    */
     router.delete("/:id", redeem.delete);
 
-    // Delete all redeem
+    /*
+      Delete all redeem
+      This route will be using by admin panel
+    */
     router.delete("/", redeem.deleteAll);
 
     app.use('/api/redeem', router);
