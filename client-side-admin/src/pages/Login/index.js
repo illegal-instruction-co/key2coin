@@ -17,15 +17,27 @@ export default function Login() {
     const [state, setState] = useState(initialState)
     const [clientIpAddress, setClientIpAddress] = useState()
 
-    useEffect(async function() {
-      setClientIpAddress(await publicIp.v4() || await publicIp.v6())
-    },[])
-    function login(){
-        // api request /generate-user-auth-token/:ip/:emailHash/:passwordHash { auth: false } || {ip: ip, email: email, token: token }
-        console.log(clientIpAddress);
-        console.log("emailHash", new BEA256(state.email, clientIpAddress).encrypt("base64"))
-        console.log("passwordHash", new BEA256(state.password, clientIpAddress).encrypt("base64"))
-        history.push("/dashboard")
+
+
+    useEffect(() => {
+      (async () => {
+        setClientIpAddress(await publicIp.v4() || await publicIp.v6())
+      })()
+    }, [clientIpAddress])
+    async function login(e){
+      e.preventDefault()
+      await fetch(`http://localhost:3001/auth/generate-user-auth-token/${clientIpAddress}/${ new BEA256(state.email, clientIpAddress).encrypt("base64") }/${ new BEA256(state.password, clientIpAddress).encrypt("base64") }`)
+     .then(res => res.json())
+     .then((result) => {
+       if(result.token) {
+         history.push("/dashboard")
+       } else {
+         console.log(" Auth failed ");
+       }
+     })
+     .catch((err) => {
+       console.log(err);
+     })
     }
     return (
         <div className="login-container">

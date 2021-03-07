@@ -35,7 +35,7 @@ module.exports = function(app, userAuthMiddleWare) {
 
     /*
       Delete all sales
-      This route will be using by admin panel 
+      This route will be using by admin panel
     */
     router.delete("/", sales.deleteAll);
 

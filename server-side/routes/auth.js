@@ -4,6 +4,11 @@ const config = require('../config')
 const fs = require('fs')
 const jwt = require('jsonwebtoken')
 const BEA256 = require('bea256')
+var md5 = require('md5')
+
+const db = require("../models");
+const Users = db.users;
+const Op = db.Sequelize.Op;
 
 /*
 Modular functions
@@ -48,10 +53,20 @@ router.get('/generate-user-auth-token/:ip/:emailHash/:passwordHash', function(re
   // Create JWT ( will expire in {Config.crono.jobs[0].timer} )
   var token = jwt.sign({ ip: ip, email: emailHash }, jwtSecretKey)
 
-  // Response the token with that common parameters
-  return res.json({ip: ip, email: email, token: token })
+  var condition = { email: email, password: md5(password) }
 
-  // return res.json( { auth: false } )
+  Users.findAll({ where: condition })
+    .then(data => {
+
+      if(!data[0]) return res.json( { auth: false } )
+
+      // Response the token with that common parameters
+      return res.json({ip: ip, email: email, token: token })
+
+    })
+    .catch(err => {
+      res.json( { auth: false } )
+    });
 });
 
 /*
