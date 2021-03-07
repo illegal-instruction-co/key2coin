@@ -32,6 +32,11 @@ app.use(function(req, res, next) {
 });
 
 /*
+  Get middlewares
+*/
+const userAuthMiddleWare = require('./middlewares/user-auth')
+
+/*
   Activate bodyparser
   json & urlencoded
 */
@@ -47,12 +52,12 @@ app.use('/hourly', require('./routes/hourly'));
 app.use('/supported', require('./routes/supported'));
 app.use('/auth', require('./routes/auth'));
 
-require("./routes/languages")(app)
-require("./routes/translates")(app)
-require("./routes/sales")(app)
-require("./routes/redeems")(app)
-require("./routes/users")(app)
-require("./routes/parameters")(app)
+require("./routes/languages")(app, userAuthMiddleWare)
+require("./routes/translates")(app, userAuthMiddleWare)
+require("./routes/sales")(app, userAuthMiddleWare)
+require("./routes/redeems")(app, userAuthMiddleWare)
+require("./routes/users")(app, userAuthMiddleWare)
+require("./routes/parameters")(app, userAuthMiddleWare)
 
 /*
   Catch 404 and forward to error handler

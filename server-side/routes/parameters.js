@@ -1,4 +1,4 @@
-module.exports = app => {
+module.exports = function(app, userAuthMiddleWare) {
     const parameters = require("../controllers/parameters.js");
 
     var router = require("express").Router();

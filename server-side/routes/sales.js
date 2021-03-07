@@ -1,4 +1,4 @@
-module.exports = app => {
+module.exports = function(app, userAuthMiddleWare) {
     const sales = require("../controllers/sales.js");
 
     var router = require("express").Router();
