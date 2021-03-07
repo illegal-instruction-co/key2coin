@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Particles from 'react-particles-js';
 import { useHistory } from 'react-router-dom'
+import publicIp from 'public-ip'
+import BEA256 from 'bea256'
 
 import { handleChange } from '../Settings/functions';
 
@@ -13,8 +15,16 @@ const initialState = {
 export default function Login() {
     var history = useHistory()
     const [state, setState] = useState(initialState)
+    const [clientIpAddress, setClientIpAddress] = useState()
 
+    useEffect(async function() {
+      setClientIpAddress(await publicIp.v4() || await publicIp.v6())
+    },[])
     function login(){
+        // api request /generate-user-auth-token/:ip/:emailHash/:passwordHash { auth: false } || {ip: ip, email: email, token: token }
+        console.log(clientIpAddress);
+        console.log("emailHash", new BEA256(state.email, clientIpAddress).encrypt("base64"))
+        console.log("passwordHash", new BEA256(state.password, clientIpAddress).encrypt("base64"))
         history.push("/dashboard")
     }
     return (
