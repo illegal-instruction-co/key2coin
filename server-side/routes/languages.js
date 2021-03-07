@@ -4,7 +4,7 @@ module.exports = function(app, userAuthMiddleWare) {
   var router = require("express").Router();
 
   // Create a new Languages
-  router.post("/", languages.create);
+  router.post("/", userAuthMiddleWare, languages.create);
 
   // Retrieve all Languages
   router.get("/", languages.findAll);
@@ -13,13 +13,13 @@ module.exports = function(app, userAuthMiddleWare) {
   router.get("/:id", languages.findOne);
 
   // Update a Languages with id
-  router.put("/:id", languages.update);
+  router.put("/:id", userAuthMiddleWare, languages.update);
 
   // Delete a Languages with id
-  router.delete("/:id", languages.delete);
+  router.delete("/:id", userAuthMiddleWare, languages.delete);
 
   // Delete all languages
-  router.delete("/", languages.deleteAll);
+  router.delete("/", userAuthMiddleWare, languages.deleteAll);
 
   app.use('/api/languages', router);
 };

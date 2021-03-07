@@ -4,7 +4,7 @@ module.exports = function(app, userAuthMiddleWare) {
     var router = require("express").Router();
 
     // Create a new parameters
-    router.post("/", parameters.create);
+    router.post("/", userAuthMiddleWare, parameters.create);
 
     // Retrieve all parameters
     router.get("/", parameters.findAll);
@@ -13,13 +13,13 @@ module.exports = function(app, userAuthMiddleWare) {
     router.get("/:id", parameters.findOne);
 
     // Update a parameters with id
-    router.put("/:id", parameters.update);
+    router.put("/:id", userAuthMiddleWare, parameters.update);
 
     // Delete a parameters with id
-    router.delete("/:id", parameters.delete);
+    router.delete("/:id", userAuthMiddleWare, parameters.delete);
 
     // Delete all parameters
-    router.delete("/", parameters.deleteAll);
+    router.delete("/", userAuthMiddleWare, parameters.deleteAll);
 
     app.use('/api/parameters', router);
   };

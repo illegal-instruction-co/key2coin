@@ -4,7 +4,7 @@ module.exports = function(app, userAuthMiddleWare) {
     var router = require("express").Router();
 
     // Create a new translates
-    router.post("/", translates.create);
+    router.post("/", userAuthMiddleWare, translates.create);
 
     // Retrieve all translates
     router.get("/", translates.findAll);
@@ -13,13 +13,13 @@ module.exports = function(app, userAuthMiddleWare) {
     router.get("/:id", translates.findOne);
 
     // Update a translates with id
-    router.put("/:id", translates.update);
+    router.put("/:id", userAuthMiddleWare, translates.update);
 
     // Delete a translates with id
-    router.delete("/:id", translates.delete);
+    router.delete("/:id", userAuthMiddleWare, translates.delete);
 
     // Delete all translates
-    router.delete("/", translates.deleteAll);
+    router.delete("/", userAuthMiddleWare, translates.deleteAll);
 
     app.use('/api/translates', router);
   };

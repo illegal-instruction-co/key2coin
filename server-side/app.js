@@ -34,6 +34,8 @@ app.use(function(req, res, next) {
 /*
   Get middlewares
 */
+
+// Admin auth middleware
 const userAuthMiddleWare = require('./middlewares/user-auth')
 
 /*
