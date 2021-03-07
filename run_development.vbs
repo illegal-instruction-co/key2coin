@@ -42,6 +42,10 @@ Set oWSH = CreateObject("WScript.Shell")
    K2CCSShell.run "cmd.exe /C cd client-side && npm start"
  End Sub
 
+ Sub RunClientSideAdmin()
+   K2CCSShell.run "cmd.exe /C cd client-side-admin && npm start"
+ End Sub
+
  Sub Main()
    printf " -----------------------------"
    printf "|        _  __ ___ ___       |"
@@ -65,6 +69,9 @@ Set oWSH = CreateObject("WScript.Shell")
 
    'Run client-side instance
    call RunClientSide
+
+   'Run client-side-admin instance
+   call RunClientSideAdmin
 
    ' printf "Server-side instance id: 1"
    ' printf "Client-side instance id: 2"
