@@ -2,6 +2,7 @@ const db = require("../models");
 const Users = db.users;
 const Op = db.Sequelize.Op;
 
+var md5 = require('md5')
 // Create and Save a new Users
 exports.create = (req, res) => {
   // Validate request
@@ -16,7 +17,7 @@ exports.create = (req, res) => {
   const users = {
     email: req.body.email,
     fullname: req.body.fullname,
-    password: req.body.password,
+    password: md5(req.body.password),
   };
 
   // Save Users in the database
@@ -67,6 +68,8 @@ exports.findOne = (req, res) => {
 // Update a Users by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
+
+  if(req.body.password) req.body.password = md5(req.body.password)
 
   Users.update(req.body, {
     where: { id: id }
@@ -130,4 +133,3 @@ exports.deleteAll = (req, res) => {
       });
     });
 };
-
