@@ -46,6 +46,14 @@ app.use('/24h', require('./routes/24h'));
 app.use('/hourly', require('./routes/hourly'));
 app.use('/supported', require('./routes/supported'));
 app.use('/auth', require('./routes/auth'));
+
+require("./routes/languages")(app)
+require("./routes/translates")(app)
+require("./routes/sales")(app)
+require("./routes/redeems")(app)
+require("./routes/users")(app)
+require("./routes/parameters")(app)
+
 /*
   Catch 404 and forward to error handler
 */

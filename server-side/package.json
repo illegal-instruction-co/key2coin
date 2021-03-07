@@ -28,6 +28,8 @@
     "crypto-js": "^4.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "node-fetch": "^2.6.1"
+    "mysql2": "^2.2.5",
+    "node-fetch": "^2.6.1",
+    "sequelize": "^6.5.0"
   }
 }
