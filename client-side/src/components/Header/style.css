@@ -24,7 +24,8 @@
   justify-content: flex-end;
 }
 .logo img {
-  width: 100px;
+  width: 240px;
+  height: 50px;
 }
 
 .header a {

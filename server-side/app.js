@@ -45,6 +45,7 @@ app.use('/', require('./routes/index'));
 app.use('/24h', require('./routes/24h'));
 app.use('/hourly', require('./routes/hourly'));
 app.use('/supported', require('./routes/supported'));
+app.use('/auth', require('./routes/auth'));
 /*
   Catch 404 and forward to error handler
 */
