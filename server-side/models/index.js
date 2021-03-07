@@ -19,11 +19,11 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.languages = require("./languages.model.js")(sequelize, Sequelize);
-db.translates = require("./translates.model.js")(sequelize, Sequelize);
-db.sales = require("./sales.model.js")(sequelize, Sequelize);
-db.redeems = require("./redeems.model.js")(sequelize, Sequelize);
-db.users = require("./users.model.js")(sequelize, Sequelize);
-db.parameters = require("./parameters.model.js")(sequelize, Sequelize);
+db.languages = require("./languages.js")(sequelize, Sequelize);
+db.translates = require("./translates.js")(sequelize, Sequelize);
+db.sales = require("./sales.js")(sequelize, Sequelize);
+db.redeems = require("./redeems.js")(sequelize, Sequelize);
+db.users = require("./users.js")(sequelize, Sequelize);
+db.parameters = require("./parameters.js")(sequelize, Sequelize);
 
 module.exports = db;

@@ -1,5 +1,5 @@
 module.exports = app => {
-  const languages = require("../controllers/languages.controller.js");
+  const languages = require("../controllers/languages.js");
 
   var router = require("express").Router();
 
