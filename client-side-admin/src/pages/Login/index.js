@@ -15,6 +15,8 @@ const initialState = {
 export default function Login() {
     var history = useHistory()
     const [state, setState] = useState(initialState)
+    const [authStatus, setAuthStatus] = useState('Administration Login')
+    const [authStatusClass, setAuthStatusClass] = useState('status')
     const [clientIpAddress, setClientIpAddress] = useState()
 
 
@@ -30,9 +32,14 @@ export default function Login() {
      .then(res => res.json())
      .then((result) => {
        if(result.token) {
-         history.push("/dashboard")
+         setAuthStatus('Successfully logged in, you are being redirected ...')
+         setAuthStatusClass(`success`)
+         setTimeout(function() {
+           history.push("/dashboard")
+         }, 1000)
        } else {
-         console.log(" Auth failed ");
+         setAuthStatusClass('error')
+         setAuthStatus('Email or password does not match our records.')
        }
      })
      .catch((err) => {
@@ -46,7 +53,7 @@ export default function Login() {
             </div>
             <div className="login-box">
                 <div className="login-header">
-                    Administration Login
+                    <span className={authStatusClass}> { authStatus } </span>
                 </div>
                 <div>
                     <form onSubmit={login}>

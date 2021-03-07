@@ -45,3 +45,18 @@
     width: 95%;
   }
 }
+.status {
+  transform: translateY(0%) scale(1);
+  transition: all 1000ms ease-in-out;
+  color: var(--defaultColor);
+}
+.error {
+  transform: translateY(0%) scale(1);
+  transition: all 200ms ease-in-out;
+  color: red;
+}
+.success {
+  transform: translateY(0%) scale(1);
+  transition: all 200ms ease-in-out;
+  color: green;
+}
