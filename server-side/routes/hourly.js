@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const config = require('../config')
 const fs = require('fs')
+const path = require('path')
 
 /*
 Modular functions
@@ -11,7 +12,7 @@ const Log = require('../functions/log')
 router.get('/prices', function(req, res, next) {
 
   // Get hourly prices temp
-  let hourlyPrices =  fs.readFileSync(`${__dirname}\\..\\temp\\${config.basis.hourly_prices.data_temp}`, 'utf8')
+  let hourlyPrices =  fs.readFileSync(path.join(__dirname, '/../temp/' + config.basis.hourly_prices.data_temp) , 'utf8') ? fs.readFileSync(path.join(__dirname, '/../temp/' + config.basis.hourly_prices.data_temp) , 'utf8') : {}
 
   res.json(JSON.parse(hourlyPrices))
 
