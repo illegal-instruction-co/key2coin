@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const config = require('../config')
 const fs = require('fs')
+const path = require('path')
 
 /*
 Modular functions
@@ -11,7 +12,7 @@ const Log = require('../functions/log')
 router.get('/', function(req, res, next) {
 
   // Get statistics temp
-  let statistics =  fs.readFileSync(`${__dirname}\\..\\temp\\${config.basis.daily_statistics.data_temp}`, 'utf8') ? fs.readFileSync(`${__dirname}\\..\\temp\\${config.basis.daily_statistics.data_temp}`, 'utf8') : {}
+  let statistics =  fs.readFileSync(path.join(__dirname, '/../temp/' + config.basis.daily_statistics.data_temp), 'utf8') ? fs.readFileSync(path.join(__dirname, '/../temp/' + config.basis.daily_statistics.data_temp), 'utf8') : {}
 
   res.json(JSON.parse(statistics))
 

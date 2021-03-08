@@ -42,7 +42,7 @@ export default function BuyPage() {
         async function getCrypto(){
             var res = await axios.get(`http://localhost:3001/24h`)
             var hourlyData = await axios.get(`http://localhost:3001/hourly/prices`)
-            
+
             var crypto_data = []
             var hourlyGraph = []
             var keys = Object.keys(res.data).map((key) => key);
@@ -53,7 +53,7 @@ export default function BuyPage() {
 
                 var crypto_ = res.data[key]
                 crypto_.code = key
-                crypto_.data = []                
+                crypto_.data = []
                 for(let key1 in hourlyGraph){
                     var el = hourlyGraph[key1]
                     for(let key2 in hourlyData.data){
