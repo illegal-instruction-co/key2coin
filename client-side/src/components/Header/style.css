@@ -5,9 +5,12 @@
   padding: 10px 50px 10px 50px;
   box-sizing: border-box;
   margin-bottom: 20px;
-  background-color: var(--white);
   color: var(--softColor);
-  border-bottom: var(--second) 1px solid;
+  border-bottom: var(--white) 1px solid;
+  background-color: var(--defaultColor);
+}
+.logo {
+    transition: transform 0.2s;
 }
 .logo,
 .header .menu,
@@ -21,15 +24,17 @@
   justify-content: flex-end;
 }
 .logo .text {
+  font-family: key2coin;
   font-size: 3vw;
-  border-right: var(--second) 1px solid;
 }
-
+.logo:hover {
+  transform: scale(1.05);
+}
 .header a {
   padding: 10px;
   font-size: 16px;
   font-weight: 500;
-  color: var(--second);
+  color: var(--softColor);
 }
 .header a:hover {
   color: var(--button);
@@ -58,7 +63,8 @@
     font-size: 30px;
     border:none;
     position: absolute;
-    left: 0px;
+    left: -50px;
+    top: -25px;
   }
   .header {
     width: 100%;

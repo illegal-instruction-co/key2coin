@@ -74,6 +74,11 @@
   -moz-box-shadow: 0px 0px 2px 0px rgba(190, 190, 190, 0.5);
   box-shadow: 0px 0px 2px 0px rgba(190, 190, 190, 0.5);
 }
+.selected-static-value {
+  border: #485461 0.5px solid;
+  color: var(--defaultColor);
+  user-select: none;
+}
 .static-values div:hover {
   border: #485461 0.5px solid;
   color: var(--defaultColor);
@@ -112,8 +117,8 @@
   cursor: pointer;
 }
 .crypto-card {
-  background-color: #485461;
-  background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+  background-color: var(--defaultColor);
+  background-image: linear-gradient(315deg, var(--defaultColor) 0%, #222 74%);
   border-radius: 5px;
   margin-top: 51.2745px;
   margin-bottom: 10px;
@@ -133,9 +138,7 @@
   display: flex;
 }
 .crypto-card .crypto-card-header span {
-  position: absolute;
-  right: 20px;
-  top: 70px;
+  margin-left: auto;
   font-size: 12px;
   font-weight: 800;
   color: var(--button);
@@ -183,8 +186,7 @@
   z-index: 3;
 }
 .information-row {
-  background-color: #485461;
-  background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+  background-color: var(--defaultColor);
   padding: 50px 0px;
   margin-top: 80px;
   margin-bottom: 80px;
@@ -194,16 +196,19 @@
 .information-card {
   transition: transform 0.2s;
   background: var(--third);
-  color: var(--second);
+  color: var(--softColor);
   width: 100%;
   text-align: center;
   padding: 25px;
   margin-bottom: 10px;
-  min-height: 320px;
+  min-height: 400px;
   border-radius: 5px;
 }
+.information-card small {
+    font-size: 12pt;
+}
 .information-card:hover {
-  transform: translate(0px, -10px);
+  transform: translate(0px, -5px);
 }
 .information-card small {
   width: 100%;
@@ -223,5 +228,6 @@
     padding: 20px;
     margin-top: 10px;
     min-height: 250px;
+    width: 100%;
   }
 }

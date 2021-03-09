@@ -181,7 +181,7 @@ export default function BuyPage() {
                                                 <div style={{ width: '100%', height: 50 }}>
                                                     <ResponsiveContainer>
                                                         <LineChart data={crypto.data}>
-                                                            <Line type="monotone" dataKey="uv" stroke="#8884d8" dot={""}/>
+                                                            <Line type="monotone" dataKey="uv" stroke="var(--softColor)" dot={""}/>
                                                         </LineChart>
                                                     </ResponsiveContainer>
                                                 </div>
@@ -198,7 +198,7 @@ export default function BuyPage() {
             <div className="information-row">
                 <Container>
                     <Row justify="center">
-                        <Col xs={6} lg={3}>
+                        <Col xs={12} lg={3}>
                             <div className="information-card">
                                 <img src="/assets/icons/gift-card-1.png" alt="" />
                                 <h3>{selectLang.card1title}</h3>
@@ -208,7 +208,7 @@ export default function BuyPage() {
 
                             </div>
                         </Col>
-                        <Col xs={6} lg={3}>
+                        <Col xs={12} lg={3}>
                             <div className="information-card">
                                 <img src="/assets/icons/24-hours-icon-12-1.png" alt="" />
                                 <h3>{selectLang.card2title}</h3>
@@ -217,7 +217,7 @@ export default function BuyPage() {
                                 </small>
                             </div>
                         </Col>
-                        <Col xs={6} lg={3}>
+                        <Col xs={12} lg={3}>
                             <div className="information-card">
                                 <img src="/assets/icons/checked-1.png" alt="" />
                                 <h3>{selectLang.card3title}</h3>
@@ -226,7 +226,7 @@ export default function BuyPage() {
                                 </small>
                             </div>
                         </Col>
-                        <Col xs={6} lg={3}>
+                        <Col xs={12} lg={3}>
                             <div className="information-card">
                                 <img src="/assets/icons/clock-1.png" alt="" />
                                 <h3>{selectLang.card4title}</h3>
