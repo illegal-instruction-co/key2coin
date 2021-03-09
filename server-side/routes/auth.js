@@ -5,6 +5,7 @@ const fs = require('fs')
 const jwt = require('jsonwebtoken')
 const BEA256 = require('bea256')
 var md5 = require('md5')
+const path = require('path')
 
 const db = require("../models");
 const Users = db.users;
