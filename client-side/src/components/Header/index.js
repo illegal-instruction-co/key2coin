@@ -47,6 +47,7 @@ export default function Header() {
                             <Col className="mobile-menu" xs={12}>
                                 <Link to={`/${lang}/buy`}>{selectLang.nav_buy}</Link>
                                 <Link to={`/${lang}/redeem`}>{selectLang.nav_redeem}</Link>
+                                <Link to={`/${lang}/about`}>{selectLang.about}</Link>
                                 <a href={`https://docs.key2coin.com`}>{selectLang.developers}</a>
                             </Col>
                         </Row>
