@@ -15,7 +15,7 @@ export default function Redeem() {
     const selectLang = languages.hasOwnProperty(lang) ? languages[lang] : languages["en"]
 
     useEffect(() => {
-      document.title = 'Key2Pay | Redeem crypto currency keys'
+      document.title = 'Key2Coin | Redeem crypto currency keys'
     }, [])
 
     return (

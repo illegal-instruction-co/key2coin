@@ -36,7 +36,7 @@ export default function BuyPage() {
     const selectLang = languages.hasOwnProperty(lang) ? languages[lang] : languages["en"]
 
     useEffect(() => {
-      document.title = 'Key2Pay | Buy crypto currency keys'
+      document.title = 'Key2Coin | Buy crypto currency keys'
     }, [])
     useEffect(() => {
         async function getCrypto(){
