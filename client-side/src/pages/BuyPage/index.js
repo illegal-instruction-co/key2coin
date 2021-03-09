@@ -15,6 +15,7 @@ const staticValues = [10,25,50,100,200]
 
 export default function BuyPage() {
     const [voucherVal, setVoucherVal] = useState('50')
+    const [activeVoucherVal, setActiveVoucherVal] = useState(voucherVal)
     const [cryptoVal, setCryptoVal] = useState('')
     const [cryptoOptions, setCryptoOptions] = useState([
         {text:"BTC",value:"BTC"},
@@ -40,8 +41,8 @@ export default function BuyPage() {
     }, [])
     useEffect(() => {
         async function getCrypto(){
-            var res = await axios.get(`https://api.key2coin.com/24h`)
-            var hourlyData = await axios.get(`https://api.key2coin.com/hourly/prices`)
+            var res = await axios.get(`http://localhost:3001/24`)//axios.get(`https://api.key2coin.com/24h`)
+            var hourlyData = await axios.get(`http://localhost:3001/hourly/prices`)
 
             var crypto_data = []
             var hourlyGraph = []
@@ -139,7 +140,7 @@ export default function BuyPage() {
                                 <div className="currency-input"><div>{selectedCurrency.text}</div><input type="tel" value={voucherVal} onChange={({target}) => handleChangeVoucherVal(target.value)} /></div>
                                 <div className="static-values">
                                     {
-                                        staticValues.map(sv => <div key={sv} onClick={() => handleChangeVoucherVal(sv)}>{selectedCurrency.text}{sv}</div>)
+                                        staticValues.map(sv => <div key={sv} className = { activeVoucherVal === Number(sv) ? 'selected-static-value' : '' } onClick={() => handleChangeVoucherVal(sv) }>{selectedCurrency.text}{sv}</div>)
                                     }
                                 </div>
                                 <div className="buying-card-body-subtitle">{selectLang.currently_worth}</div>

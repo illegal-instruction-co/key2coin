@@ -28,7 +28,18 @@ export default function Login() {
     }, [clientIpAddress])
     async function login(e){
       e.preventDefault()
-      await fetch(`http://localhost:3001/auth/generate-user-auth-token/${clientIpAddress}/${ new BEA256(state.email, clientIpAddress).encrypt("base64") }/${ new BEA256(state.password, clientIpAddress).encrypt("base64") }`)
+      await fetch(`http://localhost:3001/auth/generate-user-auth-token/`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            ip: clientIpAddress,
+            emailHash: new BEA256(state.email, clientIpAddress).encrypt("base64"),
+            passwordHash: new BEA256(state.password, clientIpAddress).encrypt("base64")
+          })
+        })
      .then(res => res.json())
      .then((result) => {
        if(result.token) {

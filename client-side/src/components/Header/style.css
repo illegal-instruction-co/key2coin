@@ -25,10 +25,10 @@
 }
 .logo .text {
   font-family: key2coin;
-  font-size: 3vw;
+  font-size: 2.6vw;
 }
 .logo:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 .header a {
   padding: 10px;
