@@ -35,7 +35,7 @@ export default function Header() {
                     <img src={menuIcon} alt="menu-icon" className="menu-icon" onClick={() => setMobileMenu(!mobileMenu)}  />
                 </Col>
                 <Col className="logo" xs={3} md={2}>
-                    <Link to={`/${lang}/buy`}> <img src={logo} alt="" /> </Link>
+                    <Link to={`/${lang}/buy`} className="text"> Key2Coin </Link>
                 </Col>
                 <Col className="menu-action" xs={4} md={2}>
                     <HeaderMiniSelect defaultValue={lang} options={langs} onChange={(e) => handleChangeLang(e.target.value)} />
@@ -55,7 +55,7 @@ export default function Header() {
             </Visible>
             <Hidden xs sm>
                 <Col className="logo" xs={3} md={2}>
-                    <Link to={`/${lang}/buy`}> <img src={logo} alt="" /> </Link>
+                    <Link to={`/${lang}/buy`} className="text"> Key2Coin </Link>
                 </Col>
                 <Col className="menu" xs={5} md={6}>
                     <Link to={`/${lang}/buy`}>{selectLang.nav_buy}</Link>

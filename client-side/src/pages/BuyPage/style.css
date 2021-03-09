@@ -69,14 +69,14 @@
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  border: var(--white) 0.5px solid;
   -webkit-box-shadow: 0px 0px 2px 0px rgba(190, 190, 190, 0.5);
   -moz-box-shadow: 0px 0px 2px 0px rgba(190, 190, 190, 0.5);
   box-shadow: 0px 0px 2px 0px rgba(190, 190, 190, 0.5);
 }
 .static-values div:hover {
-  transform: scale(1.1);
-  background-color: var(--button);
-  color: var(--white);
+  border: #485461 0.5px solid;
+  color: var(--defaultColor);
   user-select: none;
 }
 .input-select-together {
@@ -117,9 +117,6 @@
   border-radius: 5px;
   margin-top: 51.2745px;
   margin-bottom: 10px;
-  -webkit-box-shadow: 0px 5px 10px 0px rgba(190, 190, 190, 0.5);
-  -moz-box-shadow: 0px 5px 10px 0px rgba(190, 190, 190, 0.5);
-  box-shadow: 0px 5px 10px 0px rgba(190, 190, 190, 0.5);
   color: var(--softColor);
   transition: all 0.2s ease-in-out;
   user-select: none;
@@ -155,9 +152,7 @@
 }
 
 .crypto-card:hover {
-  -webkit-box-shadow: 0px 0px 20px 0px rgba(50, 50, 50, 0.97);
-  -moz-box-shadow: 0px 0px 20px 0px rgba(50, 50, 50, 0.97);
-  box-shadow: 0px 0px 20px 0px rgba(50, 50, 50, 0.97);
+  transform: scale(1.05);
 }
 .rt-price {
   font-weight: 600;
@@ -197,17 +192,18 @@
   background-size: cover;
 }
 .information-card {
+  transition: transform 0.2s;
   background: var(--third);
   color: var(--second);
   width: 100%;
   text-align: center;
   padding: 25px;
   margin-bottom: 10px;
-  min-height: 280px;
+  min-height: 320px;
   border-radius: 5px;
-  -webkit-box-shadow: 0px 5px 10px 0px rgba(190, 190, 190, 0.5);
-  -moz-box-shadow: 0px 5px 10px 0px rgba(190, 190, 190, 0.5);
-  box-shadow: 0px 5px 10px 0px rgba(190, 190, 190, 0.5);
+}
+.information-card:hover {
+  transform: translate(0px, -10px);
 }
 .information-card small {
   width: 100%;

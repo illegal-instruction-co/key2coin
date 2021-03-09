@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+
 :root {
   --defaultColor: #333333;
   --hover: #f7931a;
@@ -13,15 +15,6 @@
 * {
 }
 
-::-moz-selection {
-  background: var(--button);
-  color: var(--defaultColor);
-}
-::selection {
-  background: var(--button);
-  color: var(--defaultColor);
-}
-
 html {
   height: 100%;
   box-sizing: border-box;
@@ -31,7 +24,7 @@ body {
   min-height: 100%;
   margin: 0;
   padding-bottom: 6rem;
-  font-family: sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   font-size: calc(14px + (26 - 14) * ((100vw - 400px) / (2560 - 400)));
   background-image: url("./assets/background.png");
   background-size: cover;

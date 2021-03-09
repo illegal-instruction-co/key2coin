@@ -35,8 +35,7 @@
   flex: 1;
   padding: 0 0.5em;
   cursor: pointer;
-  color: var(--white);
-  background: #485461;
+  color: var(--softColor);
 }
 /* Arrow */
 .lang-curr-select::after {
