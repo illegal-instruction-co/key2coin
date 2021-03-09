@@ -40,8 +40,8 @@ export default function BuyPage() {
     }, [])
     useEffect(() => {
         async function getCrypto(){
-            var res = await axios.get(`http://localhost:3001/24h`)
-            var hourlyData = await axios.get(`http://localhost:3001/hourly/prices`)
+            var res = await axios.get(`https://api.key2coin.com/24h`)
+            var hourlyData = await axios.get(`https://api.key2coin.com/hourly/prices`)
 
             var crypto_data = []
             var hourlyGraph = []
