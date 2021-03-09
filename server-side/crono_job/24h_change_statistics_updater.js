@@ -1,6 +1,7 @@
 const config = require('../config')
 const fs = require('fs')
 const fetch = require('node-fetch');
+const path = require('path')
 
 /*
 Modular functions
@@ -32,7 +33,7 @@ const DailyChangeStatisticsUpdater = function() {
 
   for (var i = 0; i < config.supported_crypto_currencys.length; i++) {
     createStatistics(config.supported_crypto_currencys[i])
-    statistics[config.supported_crypto_currencys[i]] = JSON.parse(fs.readFileSync(`${__dirname}\\..\\temp\\${config.supported_crypto_currencys[i]}_STATISTICS_TEMP`, 'utf8'))
+    statistics[config.supported_crypto_currencys[i]] = JSON.parse(fs.readFileSync(path.join(__dirname,`/../temp/${config.supported_crypto_currencys[i]}_STATISTICS_TEMP`), 'utf8'))
   }
 
   // Create new temp
@@ -45,7 +46,7 @@ const DailyChangeStatisticsUpdater = function() {
 */
 function deleteOldTemp(tempFile) {
   try {
-    fs.unlinkSync(`${__dirname}\\..\\temp\\${tempFile}`)
+    fs.unlinkSync(path.join(__dirname,`/../temp/${tempFile}`))
   } catch(err) {
     Log(config.basis.error_log_prefix, {
       current: 'DailyChangeStatisticsUpdater',
@@ -60,7 +61,7 @@ function deleteOldTemp(tempFile) {
 */
 function createNewTemp(data, tempFile) {
   try {
-      fs.writeFileSync( `${__dirname}\\..\\temp\\${tempFile}`, JSON.stringify(data))
+      fs.writeFileSync( path.join(__dirname,`/../temp/${tempFile}`) , JSON.stringify(data))
   } catch(err) {
     Log(config.basis.error_log_prefix, {
       current: 'DailyChangeStatisticsUpdater',

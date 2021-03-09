@@ -1,5 +1,6 @@
 const config = require('../config')
 const fs = require('fs')
+const path = require('path')
 
 /*
 Modular functions
@@ -18,7 +19,7 @@ const JWTSecretKeyGenerator = function() {
 
   // Delete old temp
   try {
-    fs.unlinkSync(`${__dirname}\\..\\temp\\${config.basis.JWT.secret_key_temp}`)
+    fs.unlinkSync(path.join(__dirname,`/../temp/${config.basis.JWT.secret_key_temp}`))
   } catch(err) {
     Log(config.basis.error_log_prefix, {
       current: 'JWTSecretKeyGenerator',
@@ -29,7 +30,7 @@ const JWTSecretKeyGenerator = function() {
 
   // Create new temp
   try {
-      fs.writeFileSync( `${__dirname}\\..\\temp\\${config.basis.JWT.secret_key_temp}`, secretKey)
+      fs.writeFileSync( path.join(__dirname,`/../temp/${config.basis.JWT.secret_key_temp}`), secretKey)
   } catch(err) {
     Log(config.basis.error_log_prefix, {
       current: 'JWTSecretKeyGenerator',

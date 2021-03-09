@@ -1,6 +1,7 @@
 const config = require('../config')
 const fs = require('fs')
 const fetch = require('node-fetch');
+const path = require('path')
 
 /*
 Modular functions
@@ -21,7 +22,7 @@ const SupportedCryptoCurrencysHourlyPricesUpdater = function() {
   var jobTime = Math.round(Date.now() / 1000).toString()
 
   try {
-    prices = JSON.parse(fs.readFileSync(`${__dirname}\\..\\temp\\${config.basis.hourly_prices.data_temp}`, 'utf8'))
+    prices = JSON.parse(fs.readFileSync(path.join(__dirname,`/../temp/${config.basis.hourly_prices.data_temp}`), 'utf8'))
     if(prices.length === 24) prices.shift()
   } catch {
     prices = []
@@ -31,7 +32,7 @@ const SupportedCryptoCurrencysHourlyPricesUpdater = function() {
 
   for (var i = 0; i < config.supported_crypto_currencys.length; i++) {
     createPrices(config.supported_crypto_currencys[i])
-    prices.find(x => x.job_time === jobTime).crypto_currencys.push({ crypto_currency: config.supported_crypto_currencys[i], currencys:JSON.parse(fs.readFileSync(`${__dirname}\\..\\temp\\${config.supported_crypto_currencys[i]}_PRICES_TEMP`, 'utf8'))})
+    prices.find(x => x.job_time === jobTime).crypto_currencys.push({ crypto_currency: config.supported_crypto_currencys[i], currencys:JSON.parse(fs.readFileSync(path.join(__dirname,`/../temp/${config.supported_crypto_currencys[i]}_PRICES_TEMP`), 'utf8'))})
   }
 
   // Create new temp
@@ -45,7 +46,7 @@ const SupportedCryptoCurrencysHourlyPricesUpdater = function() {
 */
 function deleteOldTemp(tempFile) {
   try {
-    fs.unlinkSync(`${__dirname}\\..\\temp\\${tempFile}`)
+    fs.unlinkSync(path.join(__dirname,`/../temp/${tempFile}`))
   } catch(err) {
     Log(config.basis.error_log_prefix, {
       current: 'DailyChangeStatisticsUpdater',
@@ -60,7 +61,7 @@ function deleteOldTemp(tempFile) {
 */
 function createNewTemp(data, tempFile) {
   try {
-      fs.writeFileSync( `${__dirname}\\..\\temp\\${tempFile}`, JSON.stringify(data))
+      fs.writeFileSync(path.join(__dirname, `/../temp/${tempFile}`), JSON.stringify(data))
   } catch(err) {
     Log(config.basis.error_log_prefix, {
       current: 'DailyChangeStatisticsUpdater',

@@ -28,7 +28,7 @@ export default function Login() {
     }, [clientIpAddress])
     async function login(e){
       e.preventDefault()
-      await fetch(`http://localhost:3001/auth/generate-user-auth-token/`,
+      await fetch(`https://api.key2coin.com/auth/generate-user-auth-token/`,
         {
           method: 'POST',
           headers: {

@@ -1,4 +1,5 @@
 const config = require('../config')
+const path = require('path')
 
 /*
 Modular functions
@@ -15,7 +16,7 @@ const CronoJobs = function() {
   try {
     for (var i = 0; i < config.crono.jobs.length; i++) {
       el = config.crono.jobs[i]
-      if(el.run_at_start) require(`.\\${el.job}`)()
+      if(el.run_at_start) require(path.join(__dirname,`${el.job}.js`))()
       runJob(el)
     }
   } catch(err) {
@@ -34,7 +35,7 @@ function runJob(el) {
         current: 'CronoJobManager',
         running: el.job
       })
-      require(`.\\${el.job}`)()
+      require(path.join(__dirname,`${el.job}.js`))()
     } catch(err) {
       Log(config.basis.error_log_prefix, {
         current: 'CronoJobManager',
