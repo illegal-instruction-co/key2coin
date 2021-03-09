@@ -48,7 +48,7 @@ router.get('/generate-user-auth-token/:ip/:emailHash/:passwordHash', function(re
   }
 
   // Get JWT secret key
-  const jwtSecretKey = fs.readFileSync( `${__dirname}\\..\\temp\\${config.basis.JWT.secret_key_temp}`, 'utf8')
+  const jwtSecretKey = fs.readFileSync(path.join(__dirname, '/../temp/' + config.basis.JWT.secret_key_temp), 'utf8')
 
   // Create JWT ( will expire in {Config.crono.jobs[0].timer} )
   var token = jwt.sign({ ip: ip, email: emailHash }, jwtSecretKey)
