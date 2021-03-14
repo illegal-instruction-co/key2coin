@@ -13,6 +13,7 @@ export default function Footer() {
                         <div className="footer-links">
                             <Link to="/en/terms-conditions">Terms and Conditions</Link>
                             <Link to="/en/cookies-policy">Privacy policy</Link>
+                            <Link to="/en/branding">Branding</Link>
                         </div>
                     </Col>
                     <Col sm={6}>
