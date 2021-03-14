@@ -9,6 +9,7 @@
     "axios": "^0.21.1",
     "bea256": "^1.0.0",
     "crypto-js": "^4.0.0",
+    "md5": "^2.3.0",
     "public-ip": "^4.0.3",
     "react": "^17.0.1",
     "react-context-hook": "^2.2.0",
@@ -17,7 +18,7 @@
     "react-particles-js": "^3.4.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "react-toast-notifications": "^2.4.3",
+    "react-toast-notifications": "git+https://github.com/pA1nD/react-toast-notifications.git",
     "web-vitals": "^1.1.0"
   },
   "scripts": {

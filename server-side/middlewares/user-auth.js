@@ -5,7 +5,7 @@ const fs = require('fs')
 const userAuth  = function(req, res, next) {
 
   // Get token
-  var token = req.header(`X-${config.branding.project_name}-auth-token`)
+  var token = req.header(`X-${config.branding.project_name}-auth-token`) || req.headers.authorization
   if(!token) return res.json( { auth: false } )
 
   // Get JWT secret key

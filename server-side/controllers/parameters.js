@@ -34,8 +34,8 @@ exports.create = (req, res) => {
 
 // Retrieve all Parameters from the database.
 exports.findAll = (req, res) => {
-  const key = req.query.key;
-  var condition = key ? { key: { [Op.like]: `%${key}%` } } : null;
+  const name = req.query.name;
+  var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
 
   Parameters.findAll({ where: condition })
     .then(data => {
@@ -66,10 +66,10 @@ exports.findOne = (req, res) => {
 
 // Update a Parameters by the id in the request
 exports.update = (req, res) => {
-  const id = req.params.id;
+  const { parameter,name } = req.params;
 
   Parameters.update(req.body, {
-    where: { id: id }
+    where: { parameter : parameter , name : name }
   })
     .then(num => {
       if (num == 1) {

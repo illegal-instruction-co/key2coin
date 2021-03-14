@@ -1,6 +1,8 @@
 const langTexts = [
   "nav_buy",
   "nav_redeem",
+  "nav_about",
+  "nav_developers",
   "buy_instantly",
   "voucher_value",
   "currently_worth",

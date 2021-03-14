@@ -7,6 +7,10 @@ process.title = 'k2c_server_side';
 
 const port = process.env.PORT === undefined ? config.development.port : process.env.PORT
 
+
+const db = require("./models");
+db.sequelize.sync({ force: false , alter : true })
+
 /*
   Modular functions
 */

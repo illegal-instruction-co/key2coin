@@ -49,7 +49,7 @@ export default function Redeem() {
                                     <br />
                                     <i className="fi fi-rr-user-time" /> Waiting...
                                     <br />
-                                    <i className="fi fi-rr-time-delete" /> Canceled
+                                    <i className="fi fi-rr-time-delete" /> Expired
                                 </td>
                             </tr>
                         </tbody>

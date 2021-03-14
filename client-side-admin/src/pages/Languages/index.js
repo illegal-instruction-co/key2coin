@@ -1,72 +1,76 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'react-grid-system'
 
 import { handleChange } from '../Settings/functions'
-import { languagesContent } from './languages'
+import axios from '../../interceptor'
+import { useToasts } from 'react-toast-notifications'
 
 const initialState = {
     language : "",
-    shortName : "",
-    langValue : "",
-    selectedLang:"en"
-}
-const langTexts = [
-"nav_buy",
-"nav_redeem",
-"buy_instantly",
-"voucher_value",
-"currently_worth",
-"buy_now",
-"payment_control",
-"for_last_24_hours",
-"payment",
-"card_number",
-"name",
-"valid_thru",
-"cvc",
-"pay",
-"enter_the_code",
-"enter_the_code_ph",
-"email",
-"email_ph",
-"term_check",
-"newsletter_check",
-"redeem_button_continue",
-"developers",
-"card1title",
-"card1content",
-"card2title",
-"card2content",
-"card3title",
-"card3content",
-"card4title",
-"card4content",
-]
-const languages = [
-    {
-        id:1,
-        name:"English",
-        shortName:"EN",
-        value:"en"
-    },{
-        id:2,
-        name:"Türkçe",
-        shortName:"TR",
-        value:"tr"
-    },{
-        id:3,
-        name:"Español",
-        shortName:"ES",
-        value:"es"
-    },{
-        id:4,
-        name:"Français",
-        shortName:"FR",
-        value:"fr"
+    short_name : "",
+    value : "",
+    selectedLang: {
+        id:"",
+        language:"",
+        value:""
     }
-]
+}
 export default function Languages() {
     const [state, setState] = useState(initialState)
+    const [languages, setLanguages] = useState([])
+    const [languageTexts,setLanguageTexts] = useState([])
+    const [saveBtn,setSaveBtn] = useState(false)
+    const { addToast } = useToasts();
+    
+    function toast(status,content){
+        //status = success,error,warning,info
+        addToast(content, {
+            appearance: status,
+            autoDismiss: true,
+        })
+    }
+    function postLang(){
+        const { language, short_name, value } = state
+        axios.post('languages',{ language, short_name, value }).then(res => {
+            toast("success","New language added.")
+            console.log(res.data)
+        }).catch(err => toast("error", err))
+    }
+    function getEditLang(id,language,value){
+        setState({...state,selectedLang:{id, language, value}})
+        axios.get('translates',{params:{language_id:id}}).then(res => setLanguageTexts(res.data))
+        .catch(err => console.log(err))
+    }
+    function handleChangeTranslate(e,index){
+        var texts = [...languageTexts]
+        var name = e.target.name
+        var value = e.target.value
+        texts[index][name] = value
+        setLanguageTexts(texts)
+    }
+    function putLangTexts(){
+        let i = 0
+        if(state.selectedLang.id === "") return toast("warning", "Select the language you want to edit.")
+        for (i; i < languageTexts.length; i++) {
+            const l = languageTexts[i];
+            axios.put(`translates/${l.id}`,{value:l.value})
+            .catch(err => {
+                return toast("error",err)
+            })
+        }
+        if(i === languageTexts.length) {
+            setSaveBtn(false)
+            return toast("success","The changes have been updated.")
+        }
+    }
+    useEffect(() => {
+        function getLangs(){
+            axios.get('languages').then(res => {
+                setLanguages(res.data)
+            }).catch(err => console.log(err))
+        }
+        getLangs()
+    }, [])
     return (
         <div className="card">
             <Row>
@@ -80,17 +84,17 @@ export default function Languages() {
                         <div className="card-title">Add Languages</div>
                         <div className="input-group">
                             <label>Language</label>
-                            <input type="text" name="language" value={state.language} onChange={({target}) => handleChange(state,setState,target.name,target.value)} />
+                            <input type="text" name="language" value={state.language} onChange={({target}) => handleChange(setState,target.name,target.value)} />
                         </div>
                         <div className="input-group">
                             <label>Short Name</label>
-                            <input type="text" name="shortName" value={state.shortName} onChange={({target}) => handleChange(state,setState,target.name,target.value)} />
+                            <input type="text" name="short_name" value={state.short_name} onChange={({target}) => handleChange(setState,target.name,target.value)} />
                         </div>
                         <div className="input-group">
                             <label>Value</label>
-                            <input type="text" name="langValue" value={state.langValue} onChange={({target}) => handleChange(state,setState,target.name,target.value)} />
+                            <input type="text" name="value" value={state.value} onChange={({target}) => handleChange(setState,target.name,target.value)} />
                         </div>
-                        <button className="btn"><i className="fi fi-rr-check" /> Save</button>
+                        <button className="btn" onClick={postLang}><i className="fi fi-rr-check" /> Save</button>
                     </div>
                     <div className="card">
                         <div className="card-title">Languages List</div>
@@ -109,16 +113,16 @@ export default function Languages() {
                                     languages.map(l => 
                                         <tr key={l.id}>
                                             <td data-label="Language">
-                                                {l.name}
+                                                {l.language}
                                             </td>
                                             <td data-label="Short Name">
-                                                {l.shortName}
+                                                {l.short_name}
                                             </td>
                                             <td data-label="Value">
                                                 {l.value}
                                             </td>
                                             <td data-label="Action">
-                                                <button className="btn" onClick={() => setState({...state,selectedLang:l.value})}><i className="fi fi-rr-edit" /></button>
+                                                <button className="btn" onClick={() => getEditLang(l.id, l.language, l.value)}><i className="fi fi-rr-edit" /></button>
                                                 <button className="btn btn-danger"><i className="fi fi-rr-trash" /></button>
                                             </td>
                                         </tr>
@@ -132,7 +136,7 @@ export default function Languages() {
                     <div className="card">
                         <div className="card-title">Language Edit</div>
                         <table>
-                            <caption>Selected Lang : {state.selectedLang}</caption>
+                            <caption>Selected Language {"=>"} {state.selectedLang.language}</caption>
                             <thead>
                                 <tr>
                                 <th scope="col">Key</th>
@@ -141,18 +145,19 @@ export default function Languages() {
                             </thead>
                             <tbody>
                                 {
-                                    langTexts.map((lt,index) => 
+                                    languageTexts.length > 0 &&
+                                    languageTexts.map((lt,index) => 
                                         <tr key={index}>
                                             <td data-label="Key">
                                                 <div className="input-group">
                                                     <label></label>
-                                                    <input type="text" value={lt} disabled/>
+                                                    <input type="text" defaultValue={lt.key} disabled />
                                                 </div>
                                             </td>
                                             <td data-label="Value">
                                                 <div className="input-group">
                                                     <label></label>
-                                                    <input type="text" value={languagesContent[state.selectedLang][lt]} />
+                                                    <input type="text" value={lt.value || ""} name="value" onChange={(e) => handleChangeTranslate(e,index)} />
                                                 </div>
                                             </td>
                                         </tr>
@@ -160,7 +165,7 @@ export default function Languages() {
                                 }
                             </tbody>
                         </table>
-                        <button className="btn"><i className="fi fi-rr-check" /> Save</button>
+                        <button className="btn" onClick={putLangTexts} disabled={saveBtn}><i className="fi fi-rr-check" /> Save</button>
                     </div>
                 </Col>
             </Row>

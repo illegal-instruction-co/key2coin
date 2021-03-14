@@ -68,19 +68,21 @@ exports.findOne = (req, res) => {
 // Update a Users by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
+  const { oldPass, newPass } = req.body
+  if(newPass) password = md5(newPass)
 
-  if(req.body.password) req.body.password = md5(req.body.password)
-
-  Users.update(req.body, {
-    where: { id: id }
+  Users.update({password : md5(newPass)}, {
+    where: { id: id, password: md5(oldPass) }
   })
     .then(num => {
       if (num == 1) {
         res.send({
+          success: true,
           message: "Users was updated successfully."
         });
       } else {
         res.send({
+          success: false,
           message: `Cannot update Users with id=${id}. Maybe Users was not found or req.body is empty!`
         });
       }

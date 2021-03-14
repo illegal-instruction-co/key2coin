@@ -33,8 +33,8 @@ exports.create = (req, res) => {
 
 // Retrieve all translates from the database.
 exports.findAll = (req, res) => {
-  const key = req.query.key;
-  var condition = key ? { key: { [Op.like]: `%${key}%` } } : null;
+  const language_id = req.query.language_id;
+  var condition = language_id ? { language_id: { [Op.like]: `%${language_id}%` } } : null;
 
   Translates.findAll({ where: condition })
     .then(data => {

@@ -69,49 +69,13 @@ function App() {
 }
 
 const initialState = {
-  currency: "USD",
-  language: "en",
-  currencies: [
-    {
-        text:"$",
-        value:"USD"
-    },
-    {
-        text:"€",
-        value:"EUR"
-    },
-    {
-        text:"₺",
-        value:"TRY"
-    }
-  ],
-  langs: [
-    {
-        text:"EN",
-        value:"en"
-    },
-    {
-        text:"TR",
-        value:"tr"
-    },
-    {
-        text:"FR",
-        value:"fr"
-    },
-    {
-        text:"ES",
-        value:"es"
-    }
-  ],
-  crypto_currencys: [
-    {name:"Bitcoin",code:"BTC"},
-    {name:"Etherium",code:"ETH"},
-    {name:"Litecoin",code:"LTC"},
-    {name:"Dogecoin",code:"DOGE"},
-    {name:"Bitcoin Cash",code:"BCH"},
-    {name:"The Graph",code:"GRT"},
-    {name:"Ripple",code:"XRP"}
-  ]
+  currency: "",
+  language: "",
+  languages:[],
+  currencies: [],
+  langs: [],
+  crypto_currencys: [],
+  selectLang:[]
 }
 
 const storeConfig = {

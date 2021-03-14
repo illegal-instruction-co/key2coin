@@ -19,7 +19,7 @@ const Log = require('./functions/log')
 var cors = require('cors');
 
 app.use(cors());
-
+/*
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Credentials', true);
@@ -30,7 +30,7 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
     next();
 });
-
+*/
 /*
   Get middlewares
 */
@@ -60,6 +60,9 @@ require("./routes/sales")(app, userAuthMiddleWare)
 require("./routes/redeems")(app, userAuthMiddleWare)
 require("./routes/users")(app, userAuthMiddleWare)
 require("./routes/parameters")(app, userAuthMiddleWare)
+require("./routes/cron_jobs")(app, userAuthMiddleWare)
+require("./routes/crypto_currencies")(app, userAuthMiddleWare)
+require("./routes/currencies")(app, userAuthMiddleWare)
 
 /*
   Catch 404 and forward to error handler

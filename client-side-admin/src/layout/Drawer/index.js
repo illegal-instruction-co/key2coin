@@ -1,6 +1,6 @@
 
 import { useEffect } from 'react'
-import { useGetAndSet } from 'react-context-hook'
+import { useGetAndSet, useSetStoreValue } from 'react-context-hook'
 import { NavLink, useHistory } from 'react-router-dom'
 import { useScreenClass } from 'react-grid-system'
 
@@ -11,6 +11,7 @@ export default function Drawer() {
     var history = useHistory()
     const screenClass = useScreenClass()
     const [drawer,setDrawer] = useGetAndSet('drawer')
+    const setAuth = useSetStoreValue('auth')
 
     function openFullscreen() {
         var isInFullScreen = (document.fullscreenElement && document.fullscreenElement !== null) ||
@@ -42,6 +43,8 @@ export default function Drawer() {
         }
     }
     function logout(){
+        localStorage.removeItem('token')
+        setAuth("")
         history.push('/login')
     }
     useEffect(()=>{

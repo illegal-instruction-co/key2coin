@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Col, Container, Row, useScreenClass } from 'react-grid-system'
-import { LineChart, Line, ResponsiveContainer } from 'recharts';
-import { useGetAndSet } from 'react-context-hook'
+import { LineChart, Line, ResponsiveContainer, YAxis } from 'recharts';
+import { useGetAndSet, useStoreValue, useStoreState  } from 'react-context-hook'
 import _ from 'lodash'
-import { useParams } from 'react-router-dom'
-import axios from 'axios'
 
-import languages from '../../lang/languages.json'
+import axios from '../../interceptor'
 import CreditCard from '../../components/CreditCard';
 import './style.css'
 
@@ -14,6 +12,7 @@ const staticValues = [10,25,50,100,200]
 
 
 export default function BuyPage() {
+    const store = useStoreState()
     const [voucherVal, setVoucherVal] = useState('50')
     const [activeVoucherVal, setActiveVoucherVal] = useState(voucherVal)
     const [cryptoVal, setCryptoVal] = useState('')
@@ -27,22 +26,20 @@ export default function BuyPage() {
     const [creditCardInfo,setCreditCardInfo] = useState({number: "", name: "", expiry: "", cvc: "", issuer: ""})
 
     const [currency, setCurrency] = useGetAndSet('currency')
-    const [currencies, setCurrencies] = useGetAndSet('currencies')
-    const [crypto_currencys, setCrypto_currencys] = useGetAndSet('crypto_currencys')
-
+    const selectLang = useStoreValue('selectLang')
+    
     const screenClass = useScreenClass();
-    const selectedCurrency = currencies.filter(c => c.value === currency)[0]
+    
 
-    let { lang } = useParams();
-    const selectLang = languages.hasOwnProperty(lang) ? languages[lang] : languages["en"]
 
     useEffect(() => {
-      document.title = 'Key2Coin | Buy crypto currency keys'
+        document.title = 'Key2Coin | Buy crypto currency keys'
+        
     }, [])
     useEffect(() => {
         async function getCrypto(){
-            var res = await axios.get(`https://api.key2coin.com/24h`)//axios.get(`https://api.key2coin.com/24h`)
-            var hourlyData = await axios.get(`https://api.key2coin.com/hourly/prices`)
+            var res = await axios.get(`/24h`)//axios.get(`https://api.key2coin.com/24h`)
+            var hourlyData = await axios.get(`/hourly/prices`)
 
             var crypto_data = []
             var hourlyGraph = []
@@ -74,7 +71,16 @@ export default function BuyPage() {
                 }))
                 crypto_data.push(crypto_)
             }
-            console.log(crypto_data)
+            var res_cryptos = await axios.get('/api/crypto-currencies')
+            for (let index = 0; index < crypto_data.length; index++) {
+                const el1 = crypto_data[index];
+                for (let i = 0; i < res_cryptos.data.length; i++) {
+                    const el2 = res_cryptos.data[i];
+                    if(el1.code === el2.crypto_code){
+                        el1.name = el2.crypto
+                    }
+                }
+            }
             setCryptoState(crypto_data)
         }
         getCrypto()
@@ -104,24 +110,7 @@ export default function BuyPage() {
             setCryptoVal(toCrypto.toFixed(8))
         }
     }, [cryptoState,currency])
-    function shuffle(array) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
-
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-
-          // Pick a remaining element...
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex -= 1;
-
-          // And swap it with the current element.
-          temporaryValue = array[currentIndex];
-          array[currentIndex] = array[randomIndex];
-          array[randomIndex] = temporaryValue;
-        }
-
-        return array;
-      }
+    
     return (
         <>
             <Container>
@@ -137,10 +126,10 @@ export default function BuyPage() {
                             </div>
                             <div className="buying-card-body">
                                 <div className="buying-card-body-subtitle">{selectLang.voucher_value}</div>
-                                <div className="currency-input"><div>{selectedCurrency.text}</div><input type="tel" value={voucherVal} onChange={({target}) => handleChangeVoucherVal(target.value)} /></div>
+                                <div className="currency-input"><div>{store.currency}</div><input type="tel" value={voucherVal} onChange={({target}) => handleChangeVoucherVal(target.value)} /></div>
                                 <div className="static-values">
                                     {
-                                        staticValues.map(sv => <div key={sv} className = { activeVoucherVal === Number(sv) ? 'selected-static-value' : '' } onClick={() => handleChangeVoucherVal(sv) }>{selectedCurrency.text}{sv}</div>)
+                                        staticValues.map(sv => <div key={sv} className = { activeVoucherVal === Number(sv) ? 'selected-static-value' : '' } onClick={() => handleChangeVoucherVal(sv) }>{sv}</div>)
                                     }
                                 </div>
                                 <div className="buying-card-body-subtitle">{selectLang.currently_worth}</div>
@@ -173,15 +162,16 @@ export default function BuyPage() {
                                     >
                                         <div className="crypto-card">
                                             <div className="crypto-card-header">
-                                                {crypto_currencys.filter(cc => cc.code === crypto.code)[0].name} <span>{crypto.code}</span></div>
+                                                {crypto.name} <span>{crypto.code}</span></div>
                                             <div className="crypto-card-body">
-                                                <div className="rt-price">{selectedCurrency.text} {moneyformat(crypto.prices.filter(c => c.currency === currency)[0].result.lastPrice)}</div>
+                                                <div className="rt-price">{store.currencies.filter(curr => curr.value === currency)[0].text} {moneyformat(crypto.prices.filter(c => c.currency === currency)[0].result.lastPrice)}</div>
                                                 <div><span className="crypto-status">{parseFloat(crypto.priceChangePercent).toFixed(2)}%</span> {selectLang.for_last_24_hours}</div>
                                             </div>
                                             <div className="crypto-card-footer">
                                                 <div style={{ width: '100%', height: 50 }}>
                                                     <ResponsiveContainer>
                                                         <LineChart data={crypto.data}>
+                                                            <YAxis domain={["dataMin", "dataMax"]} allowDataOverflow={true} hide />
                                                             <Line type="monotone" dataKey="uv" stroke="var(--softColor)" dot={""}/>
                                                         </LineChart>
                                                     </ResponsiveContainer>

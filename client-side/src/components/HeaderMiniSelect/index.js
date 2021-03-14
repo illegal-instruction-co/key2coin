@@ -6,9 +6,9 @@ import './style.css'
 export default function HeaderMiniSelect(props) {
     return (
         <div className="lang-curr-select">
-            <select name="slct" id="slct" defaultValue={props.defaultValue} onChange={props.onChange}>
+            <select name="slct" id="slct" value={props.defaultValue} onChange={props.onChange}>
                 {
-                    props.options.map(option => <option value={option.value} key={option.value}>{option.text}</option>)
+                    props.options.map(option => <option value={option.value} key={option.id}>{option.text}</option>)
                 }
             </select>
         </div>

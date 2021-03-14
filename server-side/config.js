@@ -24,7 +24,8 @@ Config.database = {
     min: 0,
     acquire: 30000,
     idle: 10000
-  }
+  },
+  timezone: '+03:00'
 }
 
   Config.development = {
@@ -159,6 +160,8 @@ Config.database = {
     "en" : {
       "nav_buy": "Buy",
       "nav_redeem": "Redeem Key",
+      "nav_about": "About",
+      "nav_developers": "Docs",
       "buy_instantly": "Buy instantly",
       "voucher_value": "Key balance value",
       "currently_worth": "Currently worth",
@@ -183,6 +186,8 @@ Config.database = {
     "tr":{
       "nav_buy": "Satın Al",
       "nav_redeem": "Key Kullan",
+      "nav_about": "About",
+      "nav_developers": "Docs",
       "buy_instantly": "Hemen Satın Al",
       "voucher_value": "Key Bakiye Değeri",
       "currently_worth": "Şuandaki Değeri",
@@ -207,6 +212,8 @@ Config.database = {
     "fr": {
       "nav_buy": "Acheter",
       "nav_redeem": "Utiliser la clé",
+      "nav_about": "About",
+      "nav_developers": "Docs",
       "buy_instantly": "Acheter maintenant",
       "voucher_value": "Valeur du solde clé",
       "currently_worth": "Valeur actuelle",
@@ -231,6 +238,8 @@ Config.database = {
     "es": {
       "nav_buy": "Comprar",
       "nav_redeem": "Canjear clave",
+      "nav_about": "About",
+      "nav_developers": "Docs",
       "buy_instantly": "Comprar ahora",
       "voucher_value": "Valor de saldo clave",
       "currently_worth": "Valor actual",
@@ -240,8 +249,8 @@ Config.database = {
       "payment": "Pago",
       "card_number": "Número de tarjeta",
       "name": "Nombre Apellido",
-      "valid_thru": "SKT",
-      "cvc": "CCV",
+      "valid_thru": "Fecha de caducidad",
+      "cvc": "CVC",
       "pay": "Paga",
       "enter_the_code": "Introduzca la clave",
       "enter_the_code_ph": "00000000-0000-0000-0000-000000000000",

@@ -13,7 +13,7 @@ module.exports = function(app, userAuthMiddleWare) {
     router.get("/:id", parameters.findOne);
 
     // Update a parameters with id
-    router.put("/:id", userAuthMiddleWare, parameters.update);
+    router.put("/:parameter/:name", userAuthMiddleWare, parameters.update);
 
     // Delete a parameters with id
     router.delete("/:id", userAuthMiddleWare, parameters.delete);

@@ -1,3 +1,3 @@
-export function handleChange(state,setState,name,value){
+export function handleChange(setState,name,value){
     return setState(state => {return {...state, [name]:value}})
 }
