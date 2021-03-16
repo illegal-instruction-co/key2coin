@@ -27,18 +27,18 @@ export default function BuyPage() {
 
     const [currency, setCurrency] = useGetAndSet('currency')
     const selectLang = useStoreValue('selectLang')
-    
+
     const screenClass = useScreenClass();
-    
+
 
 
     useEffect(() => {
         document.title = 'Key2Coin | Buy crypto currency keys'
-        
+
     }, [])
     useEffect(() => {
         async function getCrypto(){
-            var res = await axios.get(`/24h`)//axios.get(`https://api.key2coin.com/24h`)
+            var res = await axios.get(`/24h`)
             var hourlyData = await axios.get(`/hourly/prices`)
 
             var crypto_data = []
@@ -110,7 +110,7 @@ export default function BuyPage() {
             setCryptoVal(toCrypto.toFixed(8))
         }
     }, [cryptoState,currency])
-    
+
     return (
         <>
             <Container>

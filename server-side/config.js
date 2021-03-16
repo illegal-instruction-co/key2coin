@@ -19,6 +19,7 @@ Config.database = {
   PASSWORD: "",
   DB: "key2coin",
   dialect: "mysql",
+  timezone: "Europe/Istanbul",
   pool: {
     max: 5,
     min: 0,

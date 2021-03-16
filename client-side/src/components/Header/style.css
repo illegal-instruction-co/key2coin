@@ -1,4 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap");
+@font-face {
+  font-family: 'key2coin';
+  src: URL('https://key2coin.com/assets/k2c.ttf');
+}
+
 .header {
   width: 100%;
   margin-left: 0 !important;
@@ -25,7 +29,7 @@
   justify-content: flex-end;
 }
 .logo .text {
-  font-family: "Play", sans-serif;
+  font-family: "key2coin";
   font-size: 1.2em;
 }
 .header a {

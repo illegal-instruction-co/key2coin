@@ -1,7 +1,7 @@
 import Axios from 'axios'
 
 var axios = Axios.create({
-    baseURL: 'http://localhost:3001'
+    baseURL: 'https://api.key2coin.com'
 });
 axios.interceptors.request.use(function (config) {
     //config.headers['Authorization'] = localStorage.getItem('token');
@@ -15,7 +15,7 @@ axios.interceptors.request.use(function (config) {
 axios.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
-    
+
     if ( error.response.status === 500 ) {
       localStorage.removeItem('token')
       return window.location = '/'

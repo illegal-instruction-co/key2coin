@@ -112,7 +112,7 @@ export default function Header() {
                                 <Link to={`/${lang}/buy`}>{selectLang.nav_buy}</Link>
                                 <Link to={`/${lang}/redeem`}>{selectLang.nav_redeem}</Link>
                                 <Link to={`/${lang}/about`}>{selectLang.nav_about}</Link>
-                                <a href={`https://docs.key2coin.com/whitepaper.pdf`}>Whitepaper</a>
+                                <a href={`https://docs.key2coin.com/media/whitepaper.pdf`}>Whitepaper</a>
                                 <a href={`https://docs.key2coin.com`}>{selectLang.nav_developers}</a>
                             </Col>
                         </Row>
@@ -127,7 +127,7 @@ export default function Header() {
                     <Link to={`/${lang}/buy`}>{selectLang.nav_buy}</Link>
                     <Link to={`/${lang}/redeem`}>{selectLang.nav_redeem}</Link>
                     <Link to={`/${lang}/about`}>{selectLang.nav_about}</Link>
-                    <a href={`https://docs.key2coin.com/whitepaper.pdf`}>Whitepaper</a>
+                    <a href={`https://docs.key2coin.com/media/whitepaper.pdf`}>Whitepaper</a>
                     <a href={`https://docs.key2coin.com`}>{selectLang.nav_developers}</a>
                 </Col>
                 <Col className="menu-action" xs={4} md={2}>
