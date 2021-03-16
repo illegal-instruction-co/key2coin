@@ -27,6 +27,6 @@ module.exports = (sequelize, Sequelize) => {
         status:0
       })
     })
-  
+
     return Sales;
 };

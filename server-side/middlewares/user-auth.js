@@ -15,7 +15,7 @@ const userAuth  = function(req, res, next) {
   if(jwt.verify(token, jwtSecretKey)) {
       return next()
   } else {
-    return res.json( { auth: false } )
+    return res.status(401).json( { auth: false } )
   }
 }
 

@@ -25,11 +25,6 @@ const Log = require('../functions/log')
 
 router.post('/generate-user-auth-token', function(req, res, next) {
 
-  /*
-  Request log
-  */
-  requestLog(req,res)
-
   const { ip, emailHash, passwordHash } = req.body
   var email
   var password
@@ -45,7 +40,7 @@ router.post('/generate-user-auth-token', function(req, res, next) {
       error: err
     })
 
-    return res.json( { error: "decrypting hashes error!" })
+    return res.status(400).json( { error: "decrypting hashes error!" }), requestLog(req,res)
   }
 
   // Get JWT secret key
@@ -59,14 +54,14 @@ router.post('/generate-user-auth-token', function(req, res, next) {
   Users.findAll({ where: condition })
     .then(data => {
 
-      if(!data[0]) return res.json( { auth: false } )
+      if(!data[0]) return res.status(401).json( { auth: false } ), requestLog(req,res)
 
       // Response the token with that common parameters
-      return res.json({ip: ip, email: email, token: token })
+      return res.json({ip: ip, email: email, token: token }), requestLog(req,res)
 
     })
     .catch(err => {
-      res.json( { auth: false } )
+      res.status(401).json( { auth: false } ), requestLog(req,res)
     });
 });
 
@@ -80,7 +75,7 @@ function requestLog(req, res) {
     request_end_point: req.originalUrl,
     request_parameters: req.params,
     request_method: req.method,
-    response_status: 200
+    response_status: res.statusCode 
   })
 }
 
