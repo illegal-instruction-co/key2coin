@@ -11,6 +11,7 @@ const K2C = {
   CryptoBlock: class {
 
     #key_;
+    #precedingHash;
 
     /*
     Constructor of crypto block
@@ -20,7 +21,7 @@ const K2C = {
       this.timestamp = timestamp;
       this.#key_ = key_;
       this.data = data;
-      this.precedingHash = precedingHash;
+      this.#precedingHash = precedingHash;
       this.hash = this.computeHash();
     }
 
@@ -30,7 +31,7 @@ const K2C = {
     at use ownership processes
     */
     computeHash(){
-      return CryptoJS.SHA256(this.#key_ + this.index + this.precedingHash + this.timestamp + JSON.stringify(this.data)).toString();
+      return CryptoJS.SHA256(this.#key_ + this.index + this.#precedingHash + this.timestamp + JSON.stringify(this.data)).toString();
     }
 
   },
@@ -153,10 +154,10 @@ const proofOfConceptVoucher = () => {
 
 }
 
-proofOfConceptSafe()
-proofOfConceptVoucher()
+// proofOfConceptSafe()
+// proofOfConceptVoucher()
 
 
 
 
-//module.exports = K2C_Safe;
+module.exports = K2C;

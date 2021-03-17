@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/illegal-instuction-co/key2coin#readme",
   "dependencies": {
+    "awesome-qr": "^2.1.2-rc.0",
     "bea256": "^1.0.0",
     "cors": "^2.8.5",
     "crypto-js": "^4.0.0",
