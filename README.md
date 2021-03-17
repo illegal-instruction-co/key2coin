@@ -3,6 +3,8 @@ key2coin
 
 Start run_development.vbs
 
+# NOT
+ağdaki son blok hiç bir zaman kimse ile paylaşılmaz.
 
 # TO DO
 sales ve redeem tablolari kaldirilacak
