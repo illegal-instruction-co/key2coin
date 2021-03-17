@@ -7,11 +7,9 @@ async function proofOfConcept() {
   const safeBackground = fs.readFileSync("../patterns/safeqr.png");
   const voucherBackground = fs.readFileSync("../patterns/voucherqr.png");
 
-  var key = "00000000-0000-0000-0000-000000000001"
-  var fB = new K2C.CryptoBlock(1, "15/03/2021", key, {
-    crypto_name: "BTC",
-    crypto_voucher_total: 55.05,
-    payment_total: 57.02
+  var key = "99999999-6666-6666-6666-999999999999"
+  var fB = new K2C.CryptoBlock(1, "17/03/2021", key, {
+    we_are: "here_for_you"
   })
 
   const buffer = await new AwesomeQR({
